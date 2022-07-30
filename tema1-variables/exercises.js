@@ -48,4 +48,4 @@ for (let data = 0; data < myInfo.length; data++){
     if (myInfo[data].includes("Aldana")){
         console.log("Encontramos tu data! " + myInfo[data]);
     }
-}
+} 
