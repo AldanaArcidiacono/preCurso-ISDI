@@ -1,7 +1,7 @@
 // Ejercicio 1:
 const myName = "Aldana";
-function myName(){
+function lettersOfMyName(){
     return "My name has " + myName.length + " letters";
 }
-const result = myName();
+const result = lettersOfMyName();
 console.log(result);
