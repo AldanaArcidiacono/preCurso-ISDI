@@ -84,7 +84,7 @@
 // const myFullName = "Aldana Arcidiacono";
 // console.log("Mis iniciales son: " + myFullName.substring(0,1) + ". " + myFullName.substring(7,8) + ".");
 
-//               ARRAYS
+//               ARRAYS     
 // Ejercicio 1:
 //const myName = ['A','L','D','A','N','A','A','R','C','I','D','I','A','C','O','N','O'];
 // function myFullName(myName){
