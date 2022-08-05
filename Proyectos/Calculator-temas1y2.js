@@ -1,11 +1,11 @@
-// Funciones auxiliares
+// Auxiliary functions:
 const getNum1 = () => {
     let num1 = prompt("Elige un número").trim();
-    // En caso de que el usuario introduzca cancelar:
+    // If the user wants to quit the program:
     if (num1 === null){
         return alert("Deseas salir? Nos vemos la próxima!")
     }
-    // En caso de que el usuario introduzca cualquier cosa que no sean números:
+    // If the user writes something besides a number:
     while (isNaN(num1) || num1 === "") {
         num1 = prompt("Ese no es un número. Debes ingresar un número.");
     }
@@ -24,14 +24,14 @@ const getNum2 = () => {
     return +num2;
 }
 
-// Operaciones
+// Math operations
 const addition = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiplication = (num1, num2) => num1 * num2;
 const division = (num1, num2) => num1 / num2;
 const squareRoot = num => Math.sqrt(num);
 
-// El resultado debería ser mostrado con 3 decimales.
+
 const roundNumber = (result, num) => {
     if (!Number.isInteger(result)) {
         return Number.parseFloat(result).toFixed(num);
@@ -39,15 +39,15 @@ const roundNumber = (result, num) => {
     return result;
 }
 
-// Función principal
+// Main function:
 const calculatorFunction = () => {  
 
-    // Los resultados deberían almacenarse dentro de una array y mostrarlos de una forma amigable al usuario.  
+    
     const myOperationsArray = [];
     const firstNumber = getNum1();
     const secondNumber = getNum2();
 
-    // Si el usuario introduce un solo numero, deberá mostrar SOLO su raíz cuadrada
+    // If the user enters only one number, only the square root of that number is performed.
     if (secondNumber === null) {
         myOperationsArray.push(`La raíz cuadrada de ${firstNumber} es ${roundNumber(squareRoot(firstNumber), 3)}`);
         alert(myOperationsArray);
