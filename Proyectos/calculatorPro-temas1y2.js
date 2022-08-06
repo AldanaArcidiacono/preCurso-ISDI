@@ -14,18 +14,25 @@ const getArrayNumbers = () => {
     let userNumbers = prompt("Escribe todos los números con los que deeses hacer tus calculos, separandolos con un guión medio ('-')")
         .trim()
         .split("-");
-    return userNumbers;
+    let number = parseInt(userNumbers);
+    return number;
 } 
 getArrayNumbers();
 
 // Funcion que realice las cuentas ¿Math operations?
-
-
+function addition() {
+    let accumulator = 0;
+    for (num in arguments) {
+      accumulator += arguments[num];
+    }
+    return accumulator;
+  }
+addition(userNumbers);
 
 //                           CALCULATOR PREVIOUS
 // Auxiliary functions:
 // Math operations
-const addition = (num1, num2) => num1 + num2;
+//const addition = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiplication = (num1, num2) => num1 * num2;
 const division = (num1, num2) => num1 / num2;
