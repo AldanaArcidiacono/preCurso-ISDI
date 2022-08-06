@@ -18,43 +18,12 @@ const getArrayNumbers = () => {
 } 
 getArrayNumbers();
 
-
-// Funcion que me almacene los números de los usuarios en un array / arguments
-function userNumber() {
-    let arrayOfUserNumber = [];
-}
-
 // Funcion que realice las cuentas ¿Math operations?
 
 
 
 //                           CALCULATOR PREVIOUS
 // Auxiliary functions:
-const getNum1 = () => {
-    let num1 = prompt("Elige un número").trim();
-    // If the user wants to quit the program:
-    if (num1 === null){
-        return alert("Deseas salir? Nos vemos la próxima!")
-    }
-    // If the user writes something besides a number:
-    while (isNaN(num1) || num1 === "") {
-        num1 = prompt("Ese no es un número. Debes ingresar un número.");
-    }
-    return +num1;
-} 
-
-const getNum2 = () => {
-    let num2 = prompt("Elige otro número");
-    if (num2 === null || num2.trim() === ""){
-        return null;
-    }
-    num2 = num2.trim();
-    while (isNaN(num2)) {
-        num2 = prompt("Ese no es un número. Debes ingresar un número.");
-    }
-    return +num2;
-}
-
 // Math operations
 const addition = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
@@ -75,21 +44,21 @@ const calculatorFunction = () => {
 
 
     const myOperationsArray = [];
-    const firstNumber = getNum1();
-    const secondNumber = getNum2();
+    const userSelectionOfNumbers = getArrayNumbers();
 
     // If the user enters only one number, only the square root of that number is performed.
     if (secondNumber === null) {
-        myOperationsArray.push(`La raíz cuadrada de ${firstNumber} es ${roundNumber(squareRoot(firstNumber), 3)}`);
+        myOperationsArray.push(`La raíz cuadrada de ${userSelectionOfNumbers} es ${roundNumber(squareRoot(userSelectionOfNumbers), 3)}`);
         alert(myOperationsArray);
         return;
     }
 
     myOperationsArray.push(
-        `El resultado de la suma de ${firstNumber} más ${secondNumber}, es ${roundNumber(addition(firstNumber, secondNumber), 3)}`, 
-        ` El resultado de la resta de ${firstNumber} menos ${secondNumber}, es ${roundNumber(subtract(firstNumber, secondNumber), 3)}`, 
-        ` El resultado de la multiplicación de ${firstNumber} por ${secondNumber}, es ${roundNumber(multiplication(firstNumber, secondNumber), 3)}`, 
-        ` El resultado de la división de ${firstNumber} por ${secondNumber}, es ${roundNumber(division(firstNumber, secondNumber), 3)}`
+        `Los números seleccionados son: ${userSelectionOfNumbers} .`
+        ` El resultado de la suma de tus números, es ${roundNumber(addition(userSelectionOfNumbers), 3)}`, 
+        ` El resultado de la resta de tus números, es ${roundNumber(subtract(userSelectionOfNumbers), 3)}`, 
+        ` El resultado de la multiplicación de tus números, es ${roundNumber(multiplication(userSelectionOfNumbers), 3)}`, 
+        ` El resultado de la división de tus números, es ${roundNumber(division(userSelectionOfNumbers), 3)}`
     );
     alert(myOperationsArray);
 }
