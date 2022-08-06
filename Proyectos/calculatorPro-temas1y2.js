@@ -10,13 +10,13 @@
 // addition(2, 3, 4);
 
 // Funcion que pida numeros ¿getNum? ¿Pedirle numeros separados por , o / y separarlos en mi codigo con .split?
-const getNum = () => {
+const getArrayNumbers = () => {
     let userNumbers = prompt("Escribe todos los números con los que deeses hacer tus calculos, separandolos con un guión medio ('-')")
         .trim()
         .split("-");
     return userNumbers;
 } 
-getNum();
+getArrayNumbers();
 
 
 // Funcion que me almacene los números de los usuarios en un array / arguments
