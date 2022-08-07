@@ -1,21 +1,11 @@
 //                                    PRO
-// function addition() {
-//     let number = 0;
-//     for (num in arguments) {
-//         console.log(num);
-//         number += arguments[num];
-//     }
-//     return number;
-// } 
-// addition(2, 3, 4);
 
-// Funcion que pida numeros ¿getNum? ¿Pedirle numeros separados por , o / y separarlos en mi codigo con .split?
 const getArrayNumbers = () => {
     let userNumbers = prompt("Escribe todos los números con los que deeses hacer tus calculos, separandolos con un guión medio ('-')")
         .trim()
-        .split("-");
-    let number = parseInt(userNumbers);
-    return number;
+        .split("-")
+        .map(Number);
+    return userNumbers;
 } 
 getArrayNumbers();
 
@@ -32,7 +22,7 @@ addition(userNumbers);
 //                           CALCULATOR PREVIOUS
 // Auxiliary functions:
 // Math operations
-//const addition = (num1, num2) => num1 + num2;
+// const addition = (num1, num2) => num1 + num2;
 const subtract = (num1, num2) => num1 - num2;
 const multiplication = (num1, num2) => num1 * num2;
 const division = (num1, num2) => num1 / num2;
