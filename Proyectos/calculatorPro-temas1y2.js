@@ -1,5 +1,5 @@
 //                                    PRO
-
+// Funcion que toma los numeros del usuario
 const getArrayNumbers = () => {
     let userNumbers = prompt("Escribe todos los números con los que deeses hacer tus calculos, separandolos con un guión medio ('-')")
         .trim()
@@ -9,7 +9,7 @@ const getArrayNumbers = () => {
 } 
 getArrayNumbers();
 
-// Funcion que realice las cuentas ¿Math operations?
+// Funcion que realice las cuentas 
 function addition() {
     let accumulator = 0;
     for (num in arguments) {
@@ -17,7 +17,9 @@ function addition() {
     }
     return accumulator;
   }
-addition(userNumbers);
+addition();
+
+// Ultima función, preguntar a usuario si quiere hacer más calculos
 
 //                           CALCULATOR PREVIOUS
 // Auxiliary functions:
@@ -27,7 +29,6 @@ const subtract = (num1, num2) => num1 - num2;
 const multiplication = (num1, num2) => num1 * num2;
 const division = (num1, num2) => num1 / num2;
 const squareRoot = num => Math.sqrt(num);
-
 
 const roundNumber = (result, num) => {
     if (!Number.isInteger(result)) {
