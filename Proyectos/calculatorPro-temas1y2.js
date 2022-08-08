@@ -2,36 +2,73 @@
 // Funcion que toma los numeros del usuario
 const getArrayNumbers = () => {
     let userNumbers = prompt("Escribe todos los números con los que deeses hacer tus calculos, separandolos con un guión medio ('-')")
-        .trim()
-        .split("-")
-        .map(Number);
-    // let userNumbers = "5-8-6-9".split("-").map(Number);
+      .trim()
+      .split("-")
+      .map(item => Number(item));
     return userNumbers;
-} 
-getArrayNumbers();
+}
 
-// Funcion que realice las cuentas 
-// Problema 1, no se como pasarle los datos de userNumbers
-// Problema 2, no puede tomar los datos de un array en conjunto
+// Funcion que realice las cuentas
+// OP 1
 function addition() {
-    let accumulator = 0;
-    for (num in arguments) {
-      accumulator += arguments[num];
-    }
-    console.log("This is the value of the acc: ", accumulator);
-    return accumulator;
+  let accumulator = 0;
+  for (num in arguments) {
+    accumulator += arguments[num];
   }
-addition(5,8,6,9);
+  console.log("This is the value of the acc: ", accumulator);
+  return accumulator;
+}
+console.log(addition(...myArgs));
 
-// Ultima función, preguntar a usuario si quiere hacer más calculos
+// OP 2
+// function addition(array) {
+//   let accumulator = 0;
+// for (let i = 0; i < array.length; i++){
+  //   accumulator += array[i];
+  // }
+//   console.log("This is the value of the acc: ", accumulator);
+//   return accumulator;
+// }
+
+function subtract() {
+  let accumulator = arguments[0];
+  for (num in arguments) {
+    if (arguments[0] !== arguments[num]){
+    accumulator -= arguments[num];
+  }
+  }
+  console.log("This is the value of the acc: ", accumulator);
+  return accumulator;
+}
+console.log(subtract(...myArgs));
+
+function multiplication() {
+  let accumulator = arguments[0];
+  for (num in arguments) {
+    if (arguments[0] !== arguments[num]){
+    accumulator *= arguments[num];
+  }
+  }
+  console.log("This is the value of the acc: ", accumulator);
+  return accumulator;
+}
+console.log(multiplication(...myArgs));
+
+function division() {
+  let accumulator = arguments[0];
+  for (num in arguments) {
+    if (arguments[0] !== arguments[num]){
+    accumulator /= arguments[num];
+  }
+  }
+  console.log("This is the value of the acc: ", accumulator);
+  return accumulator;
+}
+console.log(division(...myArgs));
+
 
 //                           CALCULATOR PREVIOUS
 // Auxiliary functions:
-// Math operations
-// const addition = (num1, num2) => num1 + num2;
-// const subtract = (num1, num2) => num1 - num2;
-// const multiplication = (num1, num2) => num1 * num2;
-// const division = (num1, num2) => num1 / num2;
 // const squareRoot = num => Math.sqrt(num);
 
 // const roundNumber = (result, num) => {
@@ -41,27 +78,39 @@ addition(5,8,6,9);
 //     return result;
 // }
 
-// // Main function:
-// const calculatorFunction = () => {  
+// Main function:
+const calculatorFunction = () => {  
 
+  let startCalculating = prompt("Deseas realizar calculos? Escribe 'Si' si deseas realizar calculos. O escribe 'No' si no lo deseas.")
+    .trim()
+    .toLowerCase();
 
-//     const myOperationsArray = [];
-//     const userSelectionOfNumbers = getArrayNumbers();
+  while (startCalculating === "si") {
 
-//     // If the user enters only one number, only the square root of that number is performed.
-//     if (secondNumber === null) {
-//         myOperationsArray.push(`La raíz cuadrada de ${userSelectionOfNumbers} es ${roundNumber(squareRoot(userSelectionOfNumbers), 3)}`);
-//         alert(myOperationsArray);
-//         return;
-//     }
+    const myOperationsArray = [];
+    const myArgs = getArrayNumbers();
 
-//     myOperationsArray.push(
-//         `Los números seleccionados son: ${userSelectionOfNumbers} .`
-//         ` El resultado de la suma de tus números, es ${roundNumber(addition(userSelectionOfNumbers), 3)}`, 
-//         ` El resultado de la resta de tus números, es ${roundNumber(subtract(userSelectionOfNumbers), 3)}`, 
-//         ` El resultado de la multiplicación de tus números, es ${roundNumber(multiplication(userSelectionOfNumbers), 3)}`, 
-//         ` El resultado de la división de tus números, es ${roundNumber(division(userSelectionOfNumbers), 3)}`
-//     );
-//     alert(myOperationsArray);
-// }
-// calculatorFunction();
+    // If the user enters only one number, only the square root of that number is performed.
+    if (myArgs.length === 1) {
+        myOperationsArray.push(`La raíz cuadrada de ${myArgs} es ${roundNumber(squareRoot(...myArgs), 3)}`);
+        startCalculating = prompt(myOperationsArray, "Deseas realizar más cálculos? Escribe 'Si' si deseas realizar calculos. O escribe 'No' si no lo deseas.")
+          .trim()
+          .toLowerCase();
+        return;
+    }
+
+    myOperationsArray.push(
+        `Los números seleccionados son: ${myArgs} .`
+        ` El resultado de la suma de tus números, es ${roundNumber(addition(...myArgs), 3)}`, 
+        ` El resultado de la resta de tus números, es ${roundNumber(subtract(...myArgs), 3)}`, 
+        ` El resultado de la multiplicación de tus números, es ${roundNumber(multiplication(...myArgs), 3)}`, 
+        ` El resultado de la división de tus números, es ${roundNumber(division(...myArgs), 3)}`
+    );
+
+    startCalculating = prompt(myOperationsArray, "Deseas realizar más cálculos? Escribe 'Si' si deseas realizar calculos. O escribe 'No' si no lo deseas.")
+      .trim()
+      .toLowerCase();
+  } 
+  alert("Gracias por usar la calculadora! Hasta la próxima!");
+}
+calculatorFunction();
