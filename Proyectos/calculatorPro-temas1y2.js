@@ -5,19 +5,23 @@ const getArrayNumbers = () => {
         .trim()
         .split("-")
         .map(Number);
+    // let userNumbers = "5-8-6-9".split("-").map(Number);
     return userNumbers;
 } 
 getArrayNumbers();
 
 // Funcion que realice las cuentas 
+// Problema 1, no se como pasarle los datos de userNumbers
+// Problema 2, no puede tomar los datos de un array en conjunto
 function addition() {
     let accumulator = 0;
     for (num in arguments) {
       accumulator += arguments[num];
     }
+    console.log("This is the value of the acc: ", accumulator);
     return accumulator;
   }
-addition();
+addition(5,8,6,9);
 
 // Ultima función, preguntar a usuario si quiere hacer más calculos
 
@@ -25,39 +29,39 @@ addition();
 // Auxiliary functions:
 // Math operations
 // const addition = (num1, num2) => num1 + num2;
-const subtract = (num1, num2) => num1 - num2;
-const multiplication = (num1, num2) => num1 * num2;
-const division = (num1, num2) => num1 / num2;
-const squareRoot = num => Math.sqrt(num);
+// const subtract = (num1, num2) => num1 - num2;
+// const multiplication = (num1, num2) => num1 * num2;
+// const division = (num1, num2) => num1 / num2;
+// const squareRoot = num => Math.sqrt(num);
 
-const roundNumber = (result, num) => {
-    if (!Number.isInteger(result)) {
-        return Number.parseFloat(result).toFixed(num);
-    }
-    return result;
-}
+// const roundNumber = (result, num) => {
+//     if (!Number.isInteger(result)) {
+//         return Number.parseFloat(result).toFixed(num);
+//     }
+//     return result;
+// }
 
-// Main function:
-const calculatorFunction = () => {  
+// // Main function:
+// const calculatorFunction = () => {  
 
 
-    const myOperationsArray = [];
-    const userSelectionOfNumbers = getArrayNumbers();
+//     const myOperationsArray = [];
+//     const userSelectionOfNumbers = getArrayNumbers();
 
-    // If the user enters only one number, only the square root of that number is performed.
-    if (secondNumber === null) {
-        myOperationsArray.push(`La raíz cuadrada de ${userSelectionOfNumbers} es ${roundNumber(squareRoot(userSelectionOfNumbers), 3)}`);
-        alert(myOperationsArray);
-        return;
-    }
+//     // If the user enters only one number, only the square root of that number is performed.
+//     if (secondNumber === null) {
+//         myOperationsArray.push(`La raíz cuadrada de ${userSelectionOfNumbers} es ${roundNumber(squareRoot(userSelectionOfNumbers), 3)}`);
+//         alert(myOperationsArray);
+//         return;
+//     }
 
-    myOperationsArray.push(
-        `Los números seleccionados son: ${userSelectionOfNumbers} .`
-        ` El resultado de la suma de tus números, es ${roundNumber(addition(userSelectionOfNumbers), 3)}`, 
-        ` El resultado de la resta de tus números, es ${roundNumber(subtract(userSelectionOfNumbers), 3)}`, 
-        ` El resultado de la multiplicación de tus números, es ${roundNumber(multiplication(userSelectionOfNumbers), 3)}`, 
-        ` El resultado de la división de tus números, es ${roundNumber(division(userSelectionOfNumbers), 3)}`
-    );
-    alert(myOperationsArray);
-}
-calculatorFunction();
+//     myOperationsArray.push(
+//         `Los números seleccionados son: ${userSelectionOfNumbers} .`
+//         ` El resultado de la suma de tus números, es ${roundNumber(addition(userSelectionOfNumbers), 3)}`, 
+//         ` El resultado de la resta de tus números, es ${roundNumber(subtract(userSelectionOfNumbers), 3)}`, 
+//         ` El resultado de la multiplicación de tus números, es ${roundNumber(multiplication(userSelectionOfNumbers), 3)}`, 
+//         ` El resultado de la división de tus números, es ${roundNumber(division(userSelectionOfNumbers), 3)}`
+//     );
+//     alert(myOperationsArray);
+// }
+// calculatorFunction();
