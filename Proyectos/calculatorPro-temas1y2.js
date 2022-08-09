@@ -7,7 +7,6 @@ const getArrayNumbers = () => {
     return userNumbers;
 }
 
-
 function addition() {
   let accumulator = arguments[0];
   for (num in arguments) {
@@ -17,7 +16,6 @@ function addition() {
   }
   return accumulator;
 }
-
 
 function subtract() {
   let accumulator = arguments[0];
@@ -29,7 +27,6 @@ function subtract() {
   return accumulator;
 }
 
-
 function multiplication() {
   let accumulator = arguments[0];
   for (num in arguments) {
@@ -40,7 +37,6 @@ function multiplication() {
   return accumulator;
 }
 
-
 function division() {
   let accumulator = arguments[0];
   for (num in arguments) {
@@ -50,7 +46,6 @@ function division() {
   }
   return accumulator;
 }
-console.log(division("This is the div: ", ...myArgs));
 
 
 // RAIZ CUADRADA: ANTES: const squareRoot = num => Math.sqrt(num);
@@ -96,16 +91,16 @@ const calculatorFunction = () => {
     // }
 
     myOperationsArray.push(
-        `Los números seleccionados son: ${getArrayNumbers()} .`
+       `Los números que seleccionaste son: ${(myArgs)} .`
         ` El resultado de la suma de tus números, es ${roundNumber(addition(...myArgs), 3)}`, 
         ` El resultado de la resta de tus números, es ${roundNumber(subtract(...myArgs), 3)}`, 
         ` El resultado de la multiplicación de tus números, es ${roundNumber(multiplication(...myArgs), 3)}`, 
         //` El resultado de la división de tus números, es ${roundNumber(division(...myArgs), 3)}`
     );
 
-    startCalculation = prompt(myOperationsArray);
+    startCalculation = confirm(myOperationsArray);
 
-    let startNewCalculation = ("Deseas realizar más cálculos? Escribe 'Si' si deseas realizar calculos. O escribe 'No' si no lo deseas.")
+    let startNewCalculation = prompt("Deseas realizar más cálculos? Escribe 'Si' si deseas realizar calculos. O escribe 'No' si no lo deseas.")
       .trim()
       .toLowerCase();
   } 
