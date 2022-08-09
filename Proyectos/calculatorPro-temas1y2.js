@@ -4,20 +4,8 @@ const getArrayNumbers = () => {
       .trim()
       .split("-")
       .map(item => Number(item));
-      // Las letras, me lo lee como objeto. 10-8-5 me lo lee como string y no entra en la condicion ""
-      // if (userNumbers === null){
-      //   console.log(typeof userNumbers);
-      //   return alert("Deseas salir? Nos vemos la próxima!");
-      // }
-      // while (isNaN(userNumbers) || userNumbers === "") {
-      //   userNumbers = prompt("no hemos podido leer correctamente tus números. Porfavor, escribe todos los números con los que deeses hacer tus calculos, separandolos con un guión medio ('-').");
-      // }
-
     return userNumbers;
 }
-
-// const myArgs = getArrayNumbers();
-// console.log(typeof myArgs, myArgs);
 
 function addition() {
   let accumulator = arguments[0];
@@ -59,10 +47,6 @@ function division() {
   return accumulator;
 }
 
-// RAIZ CUADRADA: ANTES: 
-//const squareRoot = num => Math.sqrt(num);
-
-// Para la raiz debería hacerlo de esta forma? Siendo que sólo acepta un número?
 function squareRoot() {
   let accumulator = 0;
   for (num in arguments) {
@@ -90,9 +74,9 @@ const calculatorFunction = () => {
 
     //If the user enters only one number, only the square root of that number is performed.
     if (myArgs.length === 1) {
-        myOperationsArray.push(`La raíz cuadrada de ${(myArgs)} es ${roundNumber(squareRoot(...myArgs), 3)}`);
-        startCalculation = confirm(myOperationsArray);
-        startCalculation = confirm("Deseas realizar más cálculos? Si lo deseas, toca 'Aceptar', de lo contrario toca 'Cancelar'.");
+      myOperationsArray.push(`La raíz cuadrada de ${(myArgs)} es ${roundNumber(squareRoot(...myArgs), 3)}`);
+      startCalculation = confirm(myOperationsArray);
+      startCalculation = confirm("Deseas realizar más cálculos? Si lo deseas, toca 'Aceptar', de lo contrario toca 'Cancelar'.");
     } else {
       myOperationsArray.push(
         `Los números que seleccionaste son: ${(myArgs)}.\n`,
@@ -108,7 +92,7 @@ const calculatorFunction = () => {
     
   }
 
-    alert("Gracias por usar nuestro programa! Nos vemos la próxima!");
+  alert("Gracias por usar nuestro programa! Nos vemos la próxima!");
   
 }
 calculatorFunction(); 
