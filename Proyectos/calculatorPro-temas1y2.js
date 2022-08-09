@@ -76,6 +76,7 @@ const calculatorFunction = () => {
   let startCalculation = confirm("Deseas realizar calculos? Si lo deseas, toca 'Aceptar', de lo contrario toca 'Cancelar'.");
 
   while (startCalculation === true) {
+
     const myOperationsArray = [];
     const myArgs = getArrayNumbers();
 
@@ -97,9 +98,11 @@ const calculatorFunction = () => {
 
     startCalculation = confirm(myOperationsArray);
 
-    let startCalculation = confirm("Deseas realizar más cálculos? Si lo deseas, toca 'Aceptar', de lo contrario toca 'Cancelar'.");
+    startCalculation = confirm("Deseas realizar más cálculos? Si lo deseas, toca 'Aceptar', de lo contrario toca 'Cancelar'.");
   }
 
-  alert("Gracias por usar la calculadora! Hasta la próxima!");
+  if (startCalculation === false) {
+    alert("Gracias por usar nuestro programa! Nos vemos la próxima!");
+  }
 }
 calculatorFunction(); 
