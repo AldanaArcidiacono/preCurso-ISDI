@@ -1,4 +1,3 @@
-// Estos vuelos estarán declarados de manera global:
 const flights = [
     { id: 00, to: "New York", from: "Barcelona", cost: 700, scale: false },
     { id: 01, to: "Los Angeles", from: "Madrid", cost: 1100, scale: true },
@@ -12,34 +11,68 @@ const flights = [
     { id: 09, to: "Tel-Aviv", from: "Madrid", cost: 150, scale: false },
   ];
 
-// Se preguntará por el nombre de usuario y dará la bienvenida.
 const getUserName = () => {
-    const userName = prompt("Bienvenido a Airlines! Cuál es tu nombre?");
+    const userName = prompt("Bienvenido a ISDI Coders Airlines!✈️🛩 Aquí podrás ver la información de nuestros vuelos! Cuál es tu nombre?");
     if (userName === null) {
         alert("Hasta pronto!");
     } else {
-        alert(`Hola ${userName}! Gracias por usar nuestro programa!`)
+        alert(`Hola ${userName}! A continuación te mostraremos nuestros vuelos disponibles.`)
     }
+    return userName;
 }
-getUserName();
 
-// El usuario visualizará todos los vuelos disponibles de una forma amigable: 
-// Podrá ver cuantos vuelos efectúan escalas.
-const scales = () => {
-    flights.forEach((flights) => {
-        if (flights.scale) {
-            flights.scale = "realiza escalas."
+// The user can see all avaliable flights
+const infoFlights = () => {
+    const scaleInfo = [];
+    flights.forEach(flight => {
+        let haveScale;
+        if (flight.scale) {
+            haveScale = "realiza escalas."
         } else {
-            flights.scale = "no realiza ninguna escala."
+            haveScale = "no realiza ninguna escala."
         }
-        console.log(`El vuelo con origen ${flights.from}, y destino ${flights.to}, tiene un coste de €${flights.cost} y ${flights.scale}`)
+        scaleInfo.push(`El vuelo con origen ${flight.from}, y destino ${flight.to}, tiene un coste de €${flight.cost} y ${haveScale}\n`)
     });
+    alert(scaleInfo);
 }
-scales();
 
-// El usuario verá el coste medio de los vuelos.
+const averageCost = () => {
+    let flightCost = 0;
+    for (flight of flights) {
+        flightCost += flight.cost;
+    }
+    flightCost /= flights.length;
+    flightCost = flightCost.toFixed(2);
+    alert(`El coste medio de nuestros vuelos es de: ${flightCost} euros`)
+    return flightCost
+} 
 
-// Y, sabiendo que los ultimos 5 vuelos (los últimos 5 ID's) son los últimos del día, muestra al usuario sus destinos.
-const lastDestinations = alert(`Los últimos vuelos programados para hoy son hacia los destinos:
-${flights[9].to}, ${flights[8].to}, ${flights[7].to}, ${flights[6].to} y ${flights[5].to}`)
+const flightsWithScales = () => {
+    let scales = 0;
+    flights.forEach(flight => {
+        if (flight.scale) {
+            scales++
+        }
+    });
+    
+    alert(`Hoy tenemos ${scales} vuelos que efectuan escalas.`);
+}
 
+const lastDestinations = () => {
+    let destinations = [];
+    for (i = flights.length - 5; i < flights.length; i++){
+        destinations.push(`* ${flights[i].to}\n\r`);
+   }
+    alert(`Estos son los últimos vuelos programados para hoy: \n\r ${destinations}`);
+}
+
+// Main function
+const airlinesProgram = () => {
+    const userName = getUserName();
+    infoFlights();
+    averageCost();
+    flightsWithScales();
+    lastDestinations();
+    alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
+}
+airlinesProgram();
