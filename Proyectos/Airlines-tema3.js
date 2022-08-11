@@ -26,20 +26,16 @@ getUserName();
 // El usuario visualizará todos los vuelos disponibles de una forma amigable: 
 // Podrá ver cuantos vuelos efectúan escalas.
 const scales = () => {
-    //let hasScale = "";
     flights.forEach((flights) => {
         if (flights.scale) {
             flights.scale = "realiza escalas."
         } else {
             flights.scale = "no realiza ninguna escala."
         }
-        console.log(`El vuelo con origen: ${flights.from}, y destino: ${flights.to}, tiene un coste de €${flights.cost} y ${flights.scale}`)
+        console.log(`El vuelo con origen ${flights.from}, y destino ${flights.to}, tiene un coste de €${flights.cost} y ${flights.scale}`)
     });
 }
 scales();
-
-// El vuelo con origen: Barcelona, y destino: Madrid tiene un coste de 90€ y no realiza ninguna escala
-const availableFlights = confirm(`El vuelo con origen: ${flights[5].from}, y destino: ${flights[5].to}, tiene un coste de €${flights[5].cost} y escalas ${flights[5].scale}`);
 
 // El usuario verá el coste medio de los vuelos.
 
@@ -47,4 +43,3 @@ const availableFlights = confirm(`El vuelo con origen: ${flights[5].from}, y des
 const lastDestinations = alert(`Los últimos vuelos programados para hoy son hacia los destinos:
 ${flights[9].to}, ${flights[8].to}, ${flights[7].to}, ${flights[6].to} y ${flights[5].to}`)
 
-// This is a example of array of objects... each position of array contains one object...
