@@ -32,7 +32,7 @@ const infoFlights = () => {
         } else {
             haveScale = "no realiza ninguna escala."
         }
-        scaleInfo.push(`El vuelo con origen ${flight.from}, y destino ${flight.to}, tiene un coste de €${flight.cost} y ${haveScale}\n`)
+        scaleInfo.push(`\nEl vuelo con origen ${flight.from}, y destino ${flight.to}, tiene un coste de €${flight.cost} y ${haveScale}`)
     });
     alert(scaleInfo);
 }
@@ -62,21 +62,10 @@ const flightsWithScales = () => {
 const lastDestinations = () => {
     let destinations = [];
     for (i = flights.length - 5; i < flights.length; i++){
-        destinations.push(`* ${flights[i].to}\n\r`);
+        destinations.push(`\n\r* ${flights[i].to}`);
    }
-    alert(`Estos son los últimos vuelos programados para hoy: \n\r ${destinations}`);
+    alert(`Estos son los últimos vuelos programados para hoy: \n ${destinations}`);
 }
-
-// Main function
-const airlinesProgram = () => {
-    infoFlights();
-    averageCost();
-    flightsWithScales();
-    lastDestinations();
-
-    alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
-}
-airlinesProgram();
 
 // AIRLINES PRO:
 // El programa pedirá al usuario si es ADMIN/USER
@@ -90,14 +79,31 @@ const categoryMember = () => {
     }
     return adminOrUser;
 }
-categoryMember();
 
 // Si eres ADMIN podrás crear, más vuelos, pidiendo la información por prompt(), sin poder pasar de 15 vuelos, 
 const categoryAdmin = () => {
-    
+    let 
 }
+categoryAdmin();
+
 // si se intenta introducir uno más, saltará un alert().
+
 
 // Si eres USER podrás buscar por precio. Cuando el usuario ponga el precio, debera mostrar los vuelos que tengan ese precio o mas baratos.
 
 
+// Main function
+const airlinesProgram = () => {
+    infoFlights();
+    averageCost();
+    flightsWithScales();
+    lastDestinations();
+    const adminOrUser = categoryMember();
+
+    if (adminOrUser === "ADMIN"){
+        categoryAdmin();
+    }
+
+    alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
+}
+airlinesProgram();
