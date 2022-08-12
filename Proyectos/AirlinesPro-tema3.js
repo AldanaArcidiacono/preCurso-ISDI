@@ -44,7 +44,7 @@ const averageCost = () => {
     }
     flightCost /= flights.length;
     flightCost = flightCost.toFixed(2);
-    alert(`El coste medio de nuestros vuelos es de: ${flightCost} euros`)
+    alert(`El coste medio de nuestros vuelos es de: €${flightCost}`)
     return flightCost
 } 
 
@@ -80,13 +80,48 @@ const categoryMember = () => {
     return adminOrUser;
 }
 
-// Si eres ADMIN podrás crear, más vuelos, pidiendo la información por prompt(), sin poder pasar de 15 vuelos, 
-const categoryAdmin = () => {
-    let 
+// Si eres ADMIN podrás crear, más vuelos, pidiendo la información por prompt(),  
+// sin poder pasar de 15 vuelos, si se intenta introducir uno más, saltará un alert().
+// Poderas eliminar vuelos mediante el ID.
+const askAdminAction = () => {
+    let askForAction = prompt(`${userName}, deseas crear o eliminar un vuelo? Escribe 'crear' o 'eliminar'`).toLowerCase();
+    if (askForAction === null) {
+        alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
+    } else if (askForAction !== "crear" && askForAction !== "eliminar") {
+        askForAction = prompt(`Perdona ${userName}, no te hemos entendido. Por favor escribe que deseas hacer: 'crear' o 'eliminar'`).toLowerCase();
+    } else {
+        return askForAction;
+    }
 }
-categoryAdmin();
+askAdminAction();
 
-// si se intenta introducir uno más, saltará un alert().
+const adminAction = () => {
+    const action = askAdminAction();
+    if (action === "crear"){
+        // NO ALMACENA
+        const newFlight = {};
+        newFlight.id = flights.length;
+        newFlight.to = prompt("Cuál es el destino del vuelo?");
+        newFlight.from = prompt("Desde dónde parte el vuelo?");
+        newFlight.cost = +prompt("Cuál es el costo del vuelo?");
+        newFlight.scale = prompt("Realiza escalas? Escribe 'true' si las realiza o 'false' de lo contrario.");
+        console.log(newFlight);
+    } 
+}
+adminAction();
+
+// if (flights.length <= 15) {
+    //     let createFlights = confirm("Deseas crear un nuevo vuelo?");
+    //     if (createFlights) {
+    //     let to = prompt("Cuál es el destino del vuelo?");
+    //     let from = prompt("Desde dónde parte el vuelo?");
+    //     let cost = prompt("Cuál es el costo del vuelo?");
+    //     let scale = prompt("Realiza escalas? Escribe 'true' si las realiza o 'false' de lo contrario.");
+
+    //     }
+    // } else {
+    //     alert(`Perdona ${userName}, ya existen 15 vuelos, no puedes crear uno nuevo.`)
+    // }
 
 
 // Si eres USER podrás buscar por precio. Cuando el usuario ponga el precio, debera mostrar los vuelos que tengan ese precio o mas baratos.
@@ -101,7 +136,7 @@ const airlinesProgram = () => {
     const adminOrUser = categoryMember();
 
     if (adminOrUser === "ADMIN"){
-        categoryAdmin();
+        askAdminAction();
     }
 
     alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
