@@ -79,6 +79,7 @@ const categoryMember = () => {
     }
     return adminOrUser;
 }
+categoryMember();
 
 // Si eres ADMIN podrás crear, más vuelos, pidiendo la información por prompt(),  
 // sin poder pasar de 15 vuelos, si se intenta introducir uno más, saltará un alert().
@@ -93,18 +94,17 @@ const askAdminAction = () => {
         return askForAction;
     }
 }
-askAdminAction();
 
 const adminAction = () => {
     const action = askAdminAction();
     if (action === "crear"){
-        // NO ALMACENA
         const newFlight = {};
         newFlight.id = flights.length;
         newFlight.to = prompt("Cuál es el destino del vuelo?");
         newFlight.from = prompt("Desde dónde parte el vuelo?");
         newFlight.cost = +prompt("Cuál es el costo del vuelo?");
         newFlight.scale = prompt("Realiza escalas? Escribe 'true' si las realiza o 'false' de lo contrario.");
+        flights.push(newFlight);
         console.log(newFlight);
     } 
 }
