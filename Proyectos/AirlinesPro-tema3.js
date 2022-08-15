@@ -164,39 +164,51 @@ const deleteFlights = (array) => {
 
 // ----------------------USER ACTIONS 
 // Si eres USER podrás buscar por precio. Cuando el usuario ponga el precio, debera mostrar los vuelos que tengan ese precio o mas baratos.
-const userAction = (array) => {
-    const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo.`);
+const userAction = (userName, array) => {
+    const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo. O presiona 'cancelar' para salir del programa.`);
+    if (askCost === null) {
+        alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
+    }
     const priceOfFlights = [];
-    array.forEach(flight => {
-        if (flight.cost <= askCost) {
-            priceOfFlights.push(`\nEl vuelo N°${flight.id}, desde ${flight.from} con destino a ${flight.to}, tiene un precio de €${flight.cost}`)
+    array.forEach(item => {
+        if (item.cost <= askCost) {
+            priceOfFlights.push(`Estos son los vuelos que se ajustan a tu presupeusto:\n \nVuelo N°${item.id}, ${item.from} ---> ${item.to}, €${item.cost}`);
         }
     });
     alert(priceOfFlights);
 }
 
-const newUserAction = (userName) => {
+const newUserAction = (userName, array) => {
     const newAction = confirm("Deseas ingresar otro presupuesto? Selecciona 'aceptar' si deseas continuar, o 'cancelar' para salir");
     if (!newAction) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
     } else {
-        userAction();
+        userAction(userName, array);
     }
+    return newAction;
 }
 
 // Main function
 const airlinesProgram = () => {
-    const userName = getUserName();
+    const userName = getUserName(); 
     infoFlights(flights);
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // averageCost();
-    // flightsWithScales();
-    // lastDestinations();
+    // The functions below are required for the Airlines project, but are not used in AirlinesPro
+    averageCost();
+    flightsWithScales();
+    lastDestinations();
+    // The above functions are necessary for the Airlines project, but are not used in AirlinesPro
     const role = categoryMember(userName);
     if (role === "ADMIN"){
+        let theAdminWantsToContinue;
+        do {
+            theAdminWantsToContinue = checkAdminAction(userName, flights);
+        }
+        while (theAdminWantsToContinue);
+    } else {
+        userAction(userName, flights);
         let theUserWantsToContinue;
         do {
-            theUserWantsToContinue = checkAdminAction(userName, flights);
+            theUserWantsToContinue = newUserAction(userName, flights);
         }
         while (theUserWantsToContinue);
     }
