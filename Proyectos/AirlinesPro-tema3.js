@@ -163,7 +163,7 @@ const deleteFlights = (array) => {
 }
 
 // ----------------------USER ACTIONS 
-// Si eres USER podrás buscar por precio. Cuando el usuario ponga el precio, debera mostrar los vuelos que tengan ese precio o mas baratos.
+// The user will be able to search for flights that fit its budget
 const userAction = (userName, array) => {
     const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo. O presiona 'cancelar' para salir del programa.`);
     if (askCost === null) {
@@ -172,10 +172,10 @@ const userAction = (userName, array) => {
     const priceOfFlights = [];
     array.forEach(item => {
         if (item.cost <= askCost) {
-            priceOfFlights.push(`Estos son los vuelos que se ajustan a tu presupeusto:\n \nVuelo N°${item.id}, ${item.from} ---> ${item.to}, €${item.cost}`);
+            priceOfFlights.push(`\nVuelo N°${item.id}, ${item.from} ---> ${item.to}, €${item.cost}`);
         }
     });
-    alert(priceOfFlights);
+    alert(`Estos son los vuelos que se ajustan a tu presupuesto:\n ${priceOfFlights}`);
 }
 
 const newUserAction = (userName, array) => {
