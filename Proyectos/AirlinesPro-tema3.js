@@ -67,7 +67,6 @@ const lastDestinations = () => {
 }
 
 //------------------------------------------------------------AIRLINES PRO-----------------------------------------------------------------------
-// El programa pedirá al usuario si es ADMIN/USER
 const categoryMember = (userName) => {
     let adminOrUser = prompt("Para continuar, escribe cuál es tu tipo de usuario: 'ADMIN' o 'USER'. Si quieres salir presiona 'cancelar'").toUpperCase().trim();
     if (adminOrUser === null) {
@@ -78,56 +77,15 @@ const categoryMember = (userName) => {
     }
     return adminOrUser;
 }
-//const role = categoryMember();
 
-const askAdminAction = (userName, array) => {
-    const askForAction = confirm(`${userName}, selecciona 'aceptar' para crear un vuelo, o 'cancelar' para eliminar un vuelo`);
-    if (askForAction) {
-        createFlights(array);
-    } else {
-        deleteFlights(array);
-    }
-}
-
-const canCreate = (array) => {
-    if (array.length <= 15) return true;
-    return false;
-}
-
-const canDelete = (array) => {
-    if (array.length > 0) return true;
-    return false;
-}
-
-//Funcion que diga que no puede crear y le pregunte si quiere eliminar
-const onlyDeleteFlights = (userName, array) => {
-    alert("La cantidad máxima de vuelos es 15. Ya no puedes crear más.");
-    const wantToDelete = confirm("Presiona 'aceptar' si deseas eliminar un vuelo o 'cancelar' de lo contrario.");
-    if (wantToDelete){
-        deleteFlights(array);
-    } else {
-        checkAdminAction(userName, array);
-    }
-}
-
-const onlyCreateFlights = (userName, array) => {
-    alert("Ya no hay más vuelos para borrar.");
-    const wantToCreate = confirm("Presiona 'aceptar' si deseas crear un nuevo vuelo o 'cancelar' de lo contrario.");
-    if (wantToCreate){
-        createFlights(array);
-    } else {
-        checkAdminAction(userName);
-    }
-}
-
+// ----------------------ADMIN ACTIONS 
+// Ask the admin if he wants to exit or continue in the program
 const checkAdminAction = (userName, array) => {
-    console.log("Entro en checkAdminAction");
     const doAdminAction = confirm("Presiona 'aceptar' si deseas crear o eliminar vuelos \n Presiona 'cancelar' para salir del programa.");
     if (!doAdminAction) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
         return false;
     }
-    console.log("No entro al primer if");
     let ableToCreate = canCreate(array);
     let ableToDelete = canDelete(array);
     
@@ -139,9 +97,52 @@ const checkAdminAction = (userName, array) => {
             askAdminAction(userName, array);
         }
     return true;
-} 
+}
 
-// Si eres ADMIN podrás crear, más vuelos, pidiendo la información por prompt(),
+// Checks if the admin can create more flights
+const canCreate = (array) => {
+    if (array.length <= 15) return true;
+    return false;
+}
+
+// Checks if the admin can delete more flights
+const canDelete = (array) => {
+    if (array.length > 0) return true;
+    return false;
+}
+
+// Tells the admin it can't create any more flights
+const onlyDeleteFlights = (userName, array) => {
+    alert("La cantidad máxima de vuelos es 15. Ya no puedes crear más.");
+    const wantToDelete = confirm("Presiona 'aceptar' si deseas eliminar un vuelo o 'cancelar' de lo contrario.");
+    if (wantToDelete){
+        deleteFlights(array);
+    } else {
+        checkAdminAction(userName, array);
+    }
+}
+
+// Tells the admin it can't delete any more flights
+const onlyCreateFlights = (userName, array) => {
+    alert("Ya no hay más vuelos para borrar.");
+    const wantToCreate = confirm("Presiona 'aceptar' si deseas crear un nuevo vuelo o 'cancelar' de lo contrario.");
+    if (wantToCreate){
+        createFlights(array);
+    } else {
+        checkAdminAction(userName);
+    }
+}
+
+// Asks the admin what it want to do, create or delete
+const askAdminAction = (userName, array) => {
+    const askForAction = confirm(`${userName}, selecciona 'aceptar' para crear un vuelo, o 'cancelar' para eliminar un vuelo`);
+    if (askForAction) {
+        createFlights(array);
+    } else {
+        deleteFlights(array);
+    }
+}
+
 const createFlights = (array) => {
     const newFlight = {};
     newFlight.id = array.length;
@@ -153,7 +154,6 @@ const createFlights = (array) => {
     infoFlights(array);
 }
 
-// Poderas eliminar vuelos mediante el ID.
 const deleteFlights = (array) => {
     alert("A continuación te mostraremos los vuelos disponibles. Luego te pediremos que insertes el número del vuelo que desees eliminar.")
     infoFlights(array);
@@ -162,6 +162,7 @@ const deleteFlights = (array) => {
     alert(`El vuelo N°${deletedFlight} ha sido eliminado`);
 }
 
+// ----------------------USER ACTIONS 
 // Si eres USER podrás buscar por precio. Cuando el usuario ponga el precio, debera mostrar los vuelos que tengan ese precio o mas baratos.
 const userAction = (array) => {
     const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo.`);
@@ -187,6 +188,7 @@ const newUserAction = (userName) => {
 const airlinesProgram = () => {
     const userName = getUserName();
     infoFlights(flights);
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // averageCost();
     // flightsWithScales();
     // lastDestinations();
