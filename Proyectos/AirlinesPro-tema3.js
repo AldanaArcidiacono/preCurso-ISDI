@@ -1,4 +1,4 @@
-// Airlines prev:
+// Previous Airlines functions that the program needs:
 const flights = [
     { id: 00, to: "New York", from: "Barcelona", cost: 700, scale: false },
     { id: 01, to: "Los Angeles", from: "Madrid", cost: 1100, scale: true },
@@ -36,36 +36,6 @@ const infoFlights = (array) => {
     alert(scaleInfo);
 }
 
-const averageCost = () => {
-    let flightCost = 0;
-    for (flight of flights) {
-        flightCost += flight.cost;
-    }
-    flightCost /= flights.length;
-    flightCost = flightCost.toFixed(2);
-    alert(`El coste medio de nuestros vuelos es de: €${flightCost}`)
-    return flightCost
-} 
-
-const flightsWithScales = () => {
-    let scales = 0;
-    flights.forEach(flight => {
-        if (flight.scale) {
-            scales++
-        }
-    });
-    
-    alert(`Hoy tenemos ${scales} vuelos que efectuan escalas.`);
-}
-
-const lastDestinations = () => {
-    let destinations = [];
-    for (i = flights.length - 5; i < flights.length; i++){
-        destinations.push(`\n\r* ${flights[i].to}`);
-   }
-    alert(`Estos son los últimos vuelos programados para hoy: \n ${destinations}`);
-}
-
 //------------------------------------------------------------AIRLINES PRO-----------------------------------------------------------------------
 const categoryMember = (userName) => {
     let adminOrUser = prompt("Para continuar, escribe cuál es tu tipo de usuario: 'ADMIN' o 'USER'. Si quieres salir presiona 'cancelar'").toUpperCase().trim();
@@ -101,7 +71,7 @@ const checkAdminAction = (userName, array) => {
 
 // Checks if the admin can create more flights
 const canCreate = (array) => {
-    if (array.length <= 15) return true;
+    if (array.length <= 14) return true;
     return false;
 }
 
@@ -146,9 +116,18 @@ const askAdminAction = (userName, array) => {
 const createFlights = (array) => {
     const newFlight = {};
     newFlight.id = array.length;
-    newFlight.to = prompt("Cuál es el destino del vuelo?");
-    newFlight.from = prompt("Desde dónde parte el vuelo?");
-    newFlight.cost = +prompt("Cuál es el costo del vuelo?");
+    newFlight.to = prompt("Cuál es el destino del vuelo?","Málaga").trim();
+    while (newFlight.to === null || newFlight.to === "") {
+        newFlight.to = prompt("Por favor escribe la ciudad de destino.","Málaga").trim();
+    }
+    newFlight.from = prompt("Desde dónde parte el vuelo?","Madrid").trim();
+    while (newFlight.from === null || newFlight.from === "") {
+        newFlight.from = prompt("Por favor escribe la ciudad de origen.","Madrid").trim();
+    }
+    newFlight.cost = +prompt("Cuál es el costo del vuelo?",80);
+    while (isNaN(newFlight.cost) || newFlight.cost === null || newFlight.cost === 0){
+        newFlight.cost = +prompt("El valor introducido no es un número válido. Por favor ingresa el costo del vuelo.",80);
+    };
     newFlight.scale = confirm("Presiona 'aceptar' si el vuelo tiene escalas o 'cancelar' si no realiza escalas.");
     array.push(newFlight);
     infoFlights(array);
@@ -157,10 +136,23 @@ const createFlights = (array) => {
 const deleteFlights = (array) => {
     alert("A continuación te mostraremos los vuelos disponibles. Luego te pediremos que insertes el número del vuelo que desees eliminar.")
     infoFlights(array);
-    const deletedFlight = +prompt("Inserta el número del vuelo que deseas eliminar.");
-    array.splice(deletedFlight, 1);
-    alert(`El vuelo N°${deletedFlight} ha sido eliminado`);
-}
+    let flightToDelete = +prompt("Inserta el número del vuelo que deseas eliminar.");
+    while (isNaN(flightToDelete) || flightToDelete === null || flightToDelete === ""){
+        flightToDelete = +prompt("El número introducido no corresponde a ningún ID de nuestros vuelos. Por favor, ingresa un ID válido");
+    };
+    let flightExist = array.some(item => item.id === flightToDelete);
+    while (!flightExist) {
+        flightToDelete = +prompt("El número introducido no corresponde a ningún ID de nuestros vuelos. Por favor, ingresa un ID válido");
+        flightExist = array.some(item => item.id === flightToDelete);
+    }
+    console.log(array, "Antes del filter");
+    // array = array.filter(item => item.id !== flightToDelete); Antes de cambios
+    const newArray = array.filter(item => item.id !== flightToDelete);
+    console.log(newArray);
+    alert(`El vuelo N°${flightToDelete} ha sido eliminado`);
+
+    return newArray;
+};
 
 // ----------------------USER ACTIONS 
 // The user will be able to search for flights that fit its budget
@@ -192,11 +184,6 @@ const newUserAction = (userName, array) => {
 const airlinesProgram = () => {
     const userName = getUserName(); 
     infoFlights(flights);
-    // The functions below are required for the Airlines project, but are not used in AirlinesPro
-    averageCost();
-    flightsWithScales();
-    lastDestinations();
-    // The above functions are necessary for the Airlines project, but are not used in AirlinesPro
     const role = categoryMember(userName);
     if (role === "ADMIN"){
         let theAdminWantsToContinue;
