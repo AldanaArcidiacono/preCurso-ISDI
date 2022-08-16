@@ -154,7 +154,6 @@ const deleteFlights = (array) => {
     return newArray;
 };
 
-
 // ----------------------USER ACTIONS 
 // The user will be able to search for flights that fit its budget
 const userAction = (userName, array) => {
