@@ -21,7 +21,6 @@ const getUserName = () => {
     }
     return userName;
 }
-const userName = getUserName(); 
 
 const infoFlights = () => {
     const scaleInfo = [];
@@ -111,7 +110,12 @@ const askAdminAction = () => {
 
 const createFlights = () => {
     const newFlight = {};
-    newFlight.id = flights.length;
+    newFlight.id = +prompt("Cuál es el ID del vuelo?",10);
+    let flightIdExist = flights.some(flight => flight.id === newFlight.id);
+    while (flightIdExist) {
+        newFlight.id = +prompt("El número introducido de ID ya corresponde a uno de nuestros vuelos. Por favor, ingresa un ID válido");
+        flightIdExist = flights.some(flight => flight.id === newFlight.id);
+    }
     newFlight.to = prompt("Cuál es el destino del vuelo?","Málaga").trim();
     while (newFlight.to === null || newFlight.to === "") {
         newFlight.to = prompt("Por favor escribe la ciudad de destino.","Málaga").trim();
@@ -141,9 +145,7 @@ const deleteFlights = () => {
         flightToDelete = +prompt("El número introducido no corresponde a ningún ID de nuestros vuelos. Por favor, ingresa un ID válido");
         flightExist = flights.some(flight => flight.id === flightToDelete);
     }
-    console.log(flights, "Antes del filter");
     flights = flights.filter(flight => flight.id !== flightToDelete);
-    console.log(flights, "Despeus del filter");
     alert(`El vuelo N°${flightToDelete} ha sido eliminado`);
 
     return flights;
@@ -177,6 +179,7 @@ const newUserAction = () => {
 
 // Main function
 const airlinesProgram = () => {
+    const userName = getUserName();
     infoFlights(flights);
     const role = categoryMember(userName);
     if (role === "ADMIN"){
