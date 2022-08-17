@@ -141,9 +141,7 @@ const deleteFlights = () => {
         flightToDelete = +prompt("El número introducido no corresponde a ningún ID de nuestros vuelos. Por favor, ingresa un ID válido");
         flightExist = flights.some(flight => flight.id === flightToDelete);
     }
-    console.log(flights, "Antes del filter");
     flights = flights.filter(flight => flight.id !== flightToDelete);
-    console.log(flights, "Despeus del filter");
     alert(`El vuelo N°${flightToDelete} ha sido eliminado`);
 
     return flights;
