@@ -98,7 +98,6 @@ const onlyCreateFlights = (userName) => {
     }
 }
 
-// Asks the admin what it want to do, create or delete
 const askAdminAction = (userName) => {
     const askForAction = confirm(`${userName}, selecciona 'aceptar' para crear un vuelo, o 'cancelar' para eliminar un vuelo`);
     if (askForAction) {
@@ -152,11 +151,13 @@ const deleteFlights = () => {
 };
 
 // ----------------------USER ACTIONS 
-// The user will be able to search for flights that fit its budget
 const userAction = (userName) => {
-    const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo. O presiona 'cancelar' para salir del programa.`);
+    let askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo. O presiona 'cancelar' para salir del programa.`);
     if (askCost === null) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
+    }
+    while (isNaN(askCost) || askCost === null || askCost === 0){
+        askCost = +prompt("El valor introducido no es un número válido. Por favor ingresa tu presupuesto para el vuelo.");
     }
     const priceOfFlights = [];
     flights.forEach(flight => {
@@ -176,7 +177,7 @@ const newUserAction = (userName) => {
     }
     return newAction;
 }
-
+  
 // Main function
 const airlinesProgram = () => {
     const userName = getUserName();
