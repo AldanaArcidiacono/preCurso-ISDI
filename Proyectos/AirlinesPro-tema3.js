@@ -149,15 +149,15 @@ const deleteFlights = () => {
     return flights;
 };
 
-
-// ----------------------USER ACTIONS
+// ----------------------USER ACTIONS 
+// The user will be able to search for flights that fit its budget
 const userAction = () => {
     const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo. O presiona 'cancelar' para salir del programa.`);
     if (askCost === null) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
     }
     const priceOfFlights = [];
-    array.forEach(flight => {
+    flights.forEach(flight => {
         if (flight.cost <= askCost) {
             priceOfFlights.push(`\nVuelo N°${flight.id}, ${flight.from} ---> ${flight.to}, €${flight.cost}`);
         }
@@ -177,7 +177,6 @@ const newUserAction = () => {
 
 // Main function
 const airlinesProgram = () => {
-    //const userName = getUserName(); 
     infoFlights(flights);
     const role = categoryMember(userName);
     if (role === "ADMIN"){
