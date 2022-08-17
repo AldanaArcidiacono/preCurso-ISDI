@@ -37,7 +37,7 @@ const infoFlights = () => {
 }
 
 //------------------------------------------------------------AIRLINES PRO-----------------------------------------------------------------------
-const categoryMember = () => {
+const categoryMember = (userName) => {
     let adminOrUser = prompt("Para continuar, escribe cuál es tu tipo de usuario: 'ADMIN' o 'USER'. Si quieres salir presiona 'cancelar'").toUpperCase().trim();
     if (adminOrUser === null) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
@@ -49,7 +49,7 @@ const categoryMember = () => {
 }
 
 // ----------------------ADMIN ACTIONS 
-const checkAdminAction = () => {
+const checkAdminAction = (userName) => {
     const doAdminAction = confirm("Presiona 'aceptar' si deseas crear o eliminar vuelos \n Presiona 'cancelar' para salir del programa.");
     if (!doAdminAction) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
@@ -78,7 +78,7 @@ const canDelete = () => {
     return false;
 }
 
-const onlyDeleteFlights = () => {
+const onlyDeleteFlights = (userName) => {
     alert("La cantidad máxima de vuelos es 15. Ya no puedes crear más.");
     const wantToDelete = confirm("Presiona 'aceptar' si deseas eliminar un vuelo o 'cancelar' de lo contrario.");
     if (wantToDelete){
@@ -88,7 +88,7 @@ const onlyDeleteFlights = () => {
     }
 }
 
-const onlyCreateFlights = () => {
+const onlyCreateFlights = (userName) => {
     alert("Ya no hay más vuelos para borrar.");
     const wantToCreate = confirm("Presiona 'aceptar' si deseas crear un nuevo vuelo o 'cancelar' de lo contrario.");
     if (wantToCreate){
@@ -99,7 +99,7 @@ const onlyCreateFlights = () => {
 }
 
 // Asks the admin what it want to do, create or delete
-const askAdminAction = () => {
+const askAdminAction = (userName) => {
     const askForAction = confirm(`${userName}, selecciona 'aceptar' para crear un vuelo, o 'cancelar' para eliminar un vuelo`);
     if (askForAction) {
         createFlights(flights);
@@ -153,7 +153,7 @@ const deleteFlights = () => {
 
 // ----------------------USER ACTIONS 
 // The user will be able to search for flights that fit its budget
-const userAction = () => {
+const userAction = (userName) => {
     const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo. O presiona 'cancelar' para salir del programa.`);
     if (askCost === null) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
@@ -167,7 +167,7 @@ const userAction = () => {
     alert(`Estos son los vuelos que se ajustan a tu presupuesto:\n ${priceOfFlights}`);
 }
 
-const newUserAction = () => {
+const newUserAction = (userName) => {
     const newAction = confirm("Deseas ingresar otro presupuesto? Selecciona 'aceptar' si deseas continuar, o 'cancelar' para salir");
     if (!newAction) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
