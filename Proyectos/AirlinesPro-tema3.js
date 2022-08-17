@@ -21,10 +21,11 @@ const getUserName = () => {
     }
     return userName;
 }
+const userName = getUserName(); 
 
-const infoFlights = (array) => {
+const infoFlights = () => {
     const scaleInfo = [];
-    array.forEach(flight => {
+    flights.forEach(flight => {
         let haveScale;
         if (flight.scale) {
             haveScale = "realiza escalas."
@@ -37,7 +38,7 @@ const infoFlights = (array) => {
 }
 
 //------------------------------------------------------------AIRLINES PRO-----------------------------------------------------------------------
-const categoryMember = (userName) => {
+const categoryMember = () => {
     let adminOrUser = prompt("Para continuar, escribe cuál es tu tipo de usuario: 'ADMIN' o 'USER'. Si quieres salir presiona 'cancelar'").toUpperCase().trim();
     if (adminOrUser === null) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
@@ -49,73 +50,68 @@ const categoryMember = (userName) => {
 }
 
 // ----------------------ADMIN ACTIONS 
-// Ask the admin if he wants to exit or continue in the program
-const checkAdminAction = (userName, array) => {
+const checkAdminAction = () => {
     const doAdminAction = confirm("Presiona 'aceptar' si deseas crear o eliminar vuelos \n Presiona 'cancelar' para salir del programa.");
     if (!doAdminAction) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
         return false;
     }
-    let ableToCreate = canCreate(array);
-    let ableToDelete = canDelete(array);
+    let ableToCreate = canCreate(flights);
+    let ableToDelete = canDelete(flights);
     
     if (!ableToCreate) {
-        onlyDeleteFlights(userName, array); 
+        onlyDeleteFlights(userName, flights); 
     } else if (!ableToDelete) {
-        onlyCreateFlights(userName, array);
+        onlyCreateFlights(userName, flights);
         } else {
-            askAdminAction(userName, array);
+            askAdminAction(userName, flights);
         }
     return true;
 }
 
-// Checks if the admin can create more flights
-const canCreate = (array) => {
-    if (array.length <= 14) return true;
+const canCreate = () => {
+    if (flights.length <= 14) return true;
     return false;
 }
 
-// Checks if the admin can delete more flights
-const canDelete = (array) => {
-    if (array.length > 0) return true;
+const canDelete = () => {
+    if (flights.length > 0) return true;
     return false;
 }
 
-// Tells the admin it can't create any more flights
-const onlyDeleteFlights = (userName, array) => {
+const onlyDeleteFlights = () => {
     alert("La cantidad máxima de vuelos es 15. Ya no puedes crear más.");
     const wantToDelete = confirm("Presiona 'aceptar' si deseas eliminar un vuelo o 'cancelar' de lo contrario.");
     if (wantToDelete){
-        deleteFlights(array);
+        deleteFlights(flights);
     } else {
-        checkAdminAction(userName, array);
+        checkAdminAction(userName, flights);
     }
 }
 
-// Tells the admin it can't delete any more flights
-const onlyCreateFlights = (userName, array) => {
+const onlyCreateFlights = () => {
     alert("Ya no hay más vuelos para borrar.");
     const wantToCreate = confirm("Presiona 'aceptar' si deseas crear un nuevo vuelo o 'cancelar' de lo contrario.");
     if (wantToCreate){
-        createFlights(array);
+        createFlights(flights);
     } else {
         checkAdminAction(userName);
     }
 }
 
 // Asks the admin what it want to do, create or delete
-const askAdminAction = (userName, array) => {
+const askAdminAction = () => {
     const askForAction = confirm(`${userName}, selecciona 'aceptar' para crear un vuelo, o 'cancelar' para eliminar un vuelo`);
     if (askForAction) {
-        createFlights(array);
+        createFlights(flights);
     } else {
-        deleteFlights(array);
+        deleteFlights(flights);
     }
 }
 
-const createFlights = (array) => {
+const createFlights = () => {
     const newFlight = {};
-    newFlight.id = array.length;
+    newFlight.id = flights.length;
     newFlight.to = prompt("Cuál es el destino del vuelo?","Málaga").trim();
     while (newFlight.to === null || newFlight.to === "") {
         newFlight.to = prompt("Por favor escribe la ciudad de destino.","Málaga").trim();
@@ -129,61 +125,59 @@ const createFlights = (array) => {
         newFlight.cost = +prompt("El valor introducido no es un número válido. Por favor ingresa el costo del vuelo.",80);
     };
     newFlight.scale = confirm("Presiona 'aceptar' si el vuelo tiene escalas o 'cancelar' si no realiza escalas.");
-    array.push(newFlight);
-    infoFlights(array);
+    flights.push(newFlight);
+    infoFlights(flights);
 }
 
-const deleteFlights = (array) => {
+const deleteFlights = () => {
     alert("A continuación te mostraremos los vuelos disponibles. Luego te pediremos que insertes el número del vuelo que desees eliminar.")
-    infoFlights(array);
+    infoFlights(flights);
     let flightToDelete = +prompt("Inserta el número del vuelo que deseas eliminar.");
     while (isNaN(flightToDelete) || flightToDelete === null || flightToDelete === ""){
         flightToDelete = +prompt("El número introducido no corresponde a ningún ID de nuestros vuelos. Por favor, ingresa un ID válido");
     };
-    let flightExist = array.some(item => item.id === flightToDelete);
+    let flightExist = flights.some(flight => flight.id === flightToDelete);
     while (!flightExist) {
         flightToDelete = +prompt("El número introducido no corresponde a ningún ID de nuestros vuelos. Por favor, ingresa un ID válido");
-        flightExist = array.some(item => item.id === flightToDelete);
+        flightExist = flights.some(flight => flight.id === flightToDelete);
     }
-    console.log(array, "Antes del filter");
-    // array = array.filter(item => item.id !== flightToDelete); Antes de cambios
-    const newArray = array.filter(item => item.id !== flightToDelete);
-    console.log(newArray);
+    console.log(flights, "Antes del filter");
+    flights = flights.filter(flight => flight.id !== flightToDelete);
+    console.log(flights, "Despeus del filter");
     alert(`El vuelo N°${flightToDelete} ha sido eliminado`);
 
-    return newArray;
+    return flights;
 };
 
 
-// ----------------------USER ACTIONS 
-// The user will be able to search for flights that fit its budget
-const userAction = (userName, array) => {
+// ----------------------USER ACTIONS
+const userAction = () => {
     const askCost = +prompt(`${userName}, ingresa tu presupuesto para el vuelo. O presiona 'cancelar' para salir del programa.`);
     if (askCost === null) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
     }
     const priceOfFlights = [];
-    array.forEach(item => {
-        if (item.cost <= askCost) {
-            priceOfFlights.push(`\nVuelo N°${item.id}, ${item.from} ---> ${item.to}, €${item.cost}`);
+    array.forEach(flight => {
+        if (flight.cost <= askCost) {
+            priceOfFlights.push(`\nVuelo N°${flight.id}, ${flight.from} ---> ${flight.to}, €${flight.cost}`);
         }
     });
     alert(`Estos son los vuelos que se ajustan a tu presupuesto:\n ${priceOfFlights}`);
 }
 
-const newUserAction = (userName, array) => {
+const newUserAction = () => {
     const newAction = confirm("Deseas ingresar otro presupuesto? Selecciona 'aceptar' si deseas continuar, o 'cancelar' para salir");
     if (!newAction) {
         alert(`Gracias por usar nuestro programa ${userName}! Vuelve pronto!✈️🛩`);
     } else {
-        userAction(userName, array);
+        userAction(userName, flights);
     }
     return newAction;
 }
 
 // Main function
 const airlinesProgram = () => {
-    const userName = getUserName(); 
+    //const userName = getUserName(); 
     infoFlights(flights);
     const role = categoryMember(userName);
     if (role === "ADMIN"){
