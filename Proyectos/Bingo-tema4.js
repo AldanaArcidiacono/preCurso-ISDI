@@ -43,21 +43,23 @@ const roundNumber = newTurn();
 console.log(roundNumber);
 
 const checkPlayersCard = (array, roundNumber) => {
-    if (array.some(item => item.number === roundNumber)) {
-    //if (array.includes(roundNumber)) {    
-        item.number = "X";
-        item.matched = true;
-    };
+    array.forEach(item => {
+        if (roundNumber === item.number) {
+            item.number = "X";
+            item.matched = true;
+        }
+    });
 }
 checkPlayersCard(bingoCardNumbers, roundNumber);
+console.table(bingoCardNumbers);
 
 const askNewTurn = () => {
-    const playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
-    if (!playersNewTurn) {
-        alert(`Gracias por jugar con nosotros ${userName}! Vuelve pronto!🎲🎱👋🏻`);
-    } else {
+    let playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
+    while (playersNewTurn) {
         newTurn();
+        playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
     }
+    alert(`Gracias por jugar con nosotros ${userName}! Vuelve pronto!🎲🎱👋🏻`);
 }
 askNewTurn();
 
