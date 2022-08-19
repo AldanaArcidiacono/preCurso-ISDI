@@ -8,10 +8,6 @@ const getUserName = () => {
     }
     return userName;
 }
-const userName = getUserName();
-
-// CAMBIAR NOMBRE (en plural)
-const bingoCardNumbers = [];
 
 const generateBingoCard = (array) => {
     while (array.length < 15) {
@@ -25,22 +21,21 @@ const generateBingoCard = (array) => {
         }
     }
 }
-generateBingoCard(bingoCardNumbers);
+
 
 const showBingoCard = (array) => {
-    alert("A continuación le mostraremos el que será su tablero durante el juego");
+    alert("A continuación te mostraremos tu tablero.");
     console.table(array);
     //const newBingoCard = confirm("Haz click en 'aceptar' si deseas jugar con este cartón, o en 'cancelar' si quieres un cartón diferente.")
 }
-showBingoCard(bingoCardNumbers);
+
 
 const newTurn = () => {
     const roundNumber = Math.floor(Math.random() * 30);
     alert(`Ha salido la bolilla número ${roundNumber}🎱!`);
     return roundNumber;
 }
-const roundNumber = newTurn();
-console.log(roundNumber);
+
 
 const checkPlayersCard = (array, roundNumber) => {
     array.forEach(item => {
@@ -50,10 +45,9 @@ const checkPlayersCard = (array, roundNumber) => {
         }
     });
 }
-checkPlayersCard(bingoCardNumbers, roundNumber);
-console.table(bingoCardNumbers);
 
-const askNewTurn = () => {
+
+const askNewTurn = (userName) => {
     let playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
     while (playersNewTurn) {
         newTurn();
@@ -61,11 +55,18 @@ const askNewTurn = () => {
     }
     alert(`Gracias por jugar con nosotros ${userName}! Vuelve pronto!🎲🎱👋🏻`);
 }
-askNewTurn();
 
-//////EJ de la clase:
-const checkWord =() => {
-    if (userWords.includes(word)){
-        alert("Palabra esta repetida!")
-    }
+
+// Main Function
+const bingoGame = () => {
+    const userName = getUserName();
+    const bingoCardNumbers = [];
+    generateBingoCard(bingoCardNumbers);
+    showBingoCard(bingoCardNumbers);
+    const roundNumber = newTurn();
+    console.log(roundNumber);
+    checkPlayersCard(bingoCardNumbers, roundNumber);
+    console.table(bingoCardNumbers);
+    askNewTurn(userName);
 }
+bingoGame();
