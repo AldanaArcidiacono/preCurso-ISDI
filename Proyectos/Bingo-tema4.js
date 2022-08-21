@@ -1,21 +1,21 @@
 // Versión mínima
 const getUserName = () => {
-    const userName = prompt("Bienvenido a BINGO GAME!🤗🎲🎱 Cuál es tu nombre?");
-    if (userName === null) {
-        alert("Adios! Vuele pronto!");
-    } else {
-        alert(`Hola ${userName}! A continuación se iniciará el juego.`)
+    let userName = prompt("Bienvenido a BINGO GAME!🤗🎲🎱 Cuál es tu nombre?");
+    while (userName === "" || userName === null) {
+        userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
+    // if (userName === null) {
+    //     alert("Adios! Vuele pronto!");
+    //     // Cuando le da a cancelar, el juego sigue.
+    //     return;
+    alert(`Hola ${userName}! A continuación se iniciará el juego.`)
     return userName;
 }
 
+
 const generateBingoCard = (array) => {
     while (array.length < 15) {
-        const randomNumber = Math.floor(Math.random() * 30);
-        // do {
-        //     const randomNumber = Math.floor(Math.random() * 30);
-        //     array.push({number: randomNumber, matched: false})
-        // } while (array.length < 15 && !array.some(item => item.number === randomNumber));
+        const randomNumber = Math.ceil(Math.random() * 30);
         if (!array.some(item => item.number === randomNumber)) {
            array.push({number: randomNumber, matched: false})
         }
@@ -26,34 +26,52 @@ const generateBingoCard = (array) => {
 const showBingoCard = (array) => {
     alert("A continuación te mostraremos tu tablero.");
     console.table(array);
-    //const newBingoCard = confirm("Haz click en 'aceptar' si deseas jugar con este cartón, o en 'cancelar' si quieres un cartón diferente.")
-}
+    // const newBingoCard = confirm("Haz click en 'aceptar' si deseas jugar con este cartón, o en 'cancelar' si quieres un cartón diferente.");
+    // if (newBingoCard) {
+    //     newTurn(array);
+    //     AGREGAR anotherTurn como parámetro de newTurn si despues lo usa
+    // } else {
+    //     generateBingoCard(array); 
+    // }
+}    
 
 
-const newTurn = () => {
-    const roundNumber = Math.floor(Math.random() * 30);
+const newTurn = (array) => {
+    const roundNumber = Math.ceil(Math.random() * 30);
     alert(`Ha salido la bolilla número ${roundNumber}🎱!`);
+    // hacer un loop (do/while) para que se repits cunado quiera jugar
+    console.log(roundNumber);
+    console.log("En newTurn", array);
+    // do {
+    //     checkPlayersCard(array, roundNumber);
+    // } while (anotherTurn); AGREGAR anotherTurn como parámetro
     return roundNumber;
 }
 
 
 const checkPlayersCard = (array, roundNumber) => {
-    array.forEach(item => {
+   // do {
+        array.forEach(item => {
         if (roundNumber === item.number) {
             item.number = "X";
             item.matched = true;
         }
     });
+    //} while (anotherTurn) AGREGAR anotherTurn como parámetro
+    console.log("En checkPlayer", array);
+    console.table(array);
 }
 
 
-const askNewTurn = (userName) => {
+const askNewTurn = (array, userName) => {
     let playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
     while (playersNewTurn) {
-        newTurn();
+        newTurn(array); 
+        //AGREGAR anotherTurn como parámetro de newTurn si despues lo usa
         playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
     }
     alert(`Gracias por jugar con nosotros ${userName}! Vuelve pronto!🎲🎱👋🏻`);
+    return playersNewTurn;
 }
 
 
@@ -63,10 +81,8 @@ const bingoGame = () => {
     const bingoCardNumbers = [];
     generateBingoCard(bingoCardNumbers);
     showBingoCard(bingoCardNumbers);
-    const roundNumber = newTurn();
-    console.log(roundNumber);
+    const roundNumber = newTurn(bingoCardNumbers);
     checkPlayersCard(bingoCardNumbers, roundNumber);
-    console.table(bingoCardNumbers);
-    askNewTurn(userName);
+    askNewTurn(bingoCardNumbers, userName);
 }
 bingoGame();
