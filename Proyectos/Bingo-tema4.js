@@ -6,16 +6,16 @@ const getUserName = () => {
     }
     // if (userName === null) {
     //     alert("Adios! Vuele pronto!");
-    //     // Cuando le da a cancelar, el juego sigue.
     //     return;
+    //}
     alert(`Hola ${userName}! A continuación se iniciará el juego.`)
     return userName;
 }
 
 
 const generateBingoCard = (array) => {
-    while (array.length < 15) {
-        const randomNumber = Math.ceil(Math.random() * 30);
+    while (array.length < 5) {
+        const randomNumber = Math.ceil(Math.random() * 5);
         if (!array.some(item => item.number === randomNumber)) {
            array.push({number: randomNumber, matched: false})
         }
@@ -23,66 +23,87 @@ const generateBingoCard = (array) => {
 }
 
 
-const showBingoCard = (array) => {
-    alert("A continuación te mostraremos tu tablero.");
+const showBingoCard = (userName, array) => {
+    alert(`${userName}, hemos preparado tu tablero.`);
     console.table(array);
+    // HACERLO CON DO...WHILE
     // const newBingoCard = confirm("Haz click en 'aceptar' si deseas jugar con este cartón, o en 'cancelar' si quieres un cartón diferente.");
-    // if (newBingoCard) {
-    //     newTurn(array);
-    //     AGREGAR anotherTurn como parámetro de newTurn si despues lo usa
-    // } else {
+    // if (!newBingoCard) {
     //     generateBingoCard(array); 
+    // //AGREGAR anotherTurn como parámetro de newTurn si despues lo usa
+    // } else {
+    //     newTurn(array);
     // }
+    //return newBingoCard;
 }    
 
 
-const newTurn = (array) => {
-    const roundNumber = Math.ceil(Math.random() * 30);
-    alert(`Ha salido la bolilla número ${roundNumber}🎱!`);
-    // hacer un loop (do/while) para que se repits cunado quiera jugar
-    console.log(roundNumber);
-    console.log("En newTurn", array);
-    // do {
-    //     checkPlayersCard(array, roundNumber);
-    // } while (anotherTurn); AGREGAR anotherTurn como parámetro
-    return roundNumber;
+const newTurn = () => {
+    const bingoBalls = [];
+    let roundBall;
+    do {
+        roundBall = Math.ceil(Math.random() * 5);
+    } while (bingoBalls.some(ball => ball === roundBall))
+    bingoBalls.push(roundBall);
+    alert(`Ha salido la bolilla número ${roundBall}🎱!`);
+    console.log(`Ha salido la bolilla número ${roundBall}🎱!`);
+    console.log(bingoBalls);
+    return roundBall;
 }
 
 
-const checkPlayersCard = (array, roundNumber) => {
-   // do {
-        array.forEach(item => {
-        if (roundNumber === item.number) {
+const checkPlayersCard = (array, roundBall) => {
+    array.forEach(item => {
+        if (roundBall === item.number) {
             item.number = "X";
             item.matched = true;
-        }
+            }
     });
-    //} while (anotherTurn) AGREGAR anotherTurn como parámetro
-    console.log("En checkPlayer", array);
     console.table(array);
+}
+
+
+const checkIfWin = (array) => {
+    if (array.some(item =>item.matched === false)){
+        return false;
+    } else {
+        console.log("Felicitaciones, haz ganado!");
+        return true;
+    }
 }
 
 
 const askNewTurn = (array, userName) => {
+    // Consultar con el jugadro si quiere seguir jugando
+    // Si quiere seguir, sale otra bolilla y chequea si la tiene en el carton
+    // Si no quiere seguir, lo saluda y termina el juego
     let playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
-    while (playersNewTurn) {
-        newTurn(array); 
-        //AGREGAR anotherTurn como parámetro de newTurn si despues lo usa
+    let roundBall;
+    do {
+        roundBall = newTurn(); 
+        checkPlayersCard(array, roundBall);
         playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar otra bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
-    }
+    } while (playersNewTurn && !checkIfWin(array));
     alert(`Gracias por jugar con nosotros ${userName}! Vuelve pronto!🎲🎱👋🏻`);
-    return playersNewTurn;
 }
+
 
 
 // Main Function
 const bingoGame = () => {
+    // COnsultar nombre de jugador
     const userName = getUserName();
+    // Defino mi array "carton bingo"
     const bingoCardNumbers = [];
+    // Genero el cartón de bingo con números random
     generateBingoCard(bingoCardNumbers);
-    showBingoCard(bingoCardNumbers);
-    const roundNumber = newTurn(bingoCardNumbers);
-    checkPlayersCard(bingoCardNumbers, roundNumber);
+    // Se lo muestro al jugador
+    showBingoCard(userName, bingoCardNumbers);
+    // Empieza el juego; muestro bolilla y la guardo
+    const roundBall = newTurn();
+    // Se fija si esta en el carton la bollilla y la tacha
+    checkPlayersCard(bingoCardNumbers, roundBall);
+    //
     askNewTurn(bingoCardNumbers, userName);
 }
 bingoGame();
