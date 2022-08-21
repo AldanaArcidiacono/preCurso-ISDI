@@ -4,10 +4,6 @@ const getUserName = () => {
     while (userName === "" || userName === null) {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
-    // if (userName === null) {
-    //     alert("Adios! Vuele pronto!");
-    //     return;
-    //}
     alert(`Hola ${userName}! A continuación se iniciará el juego.`)
     return userName;
 }
@@ -38,8 +34,9 @@ const showBingoCard = (userName, array) => {
 }    
 
 
+// Si pongo bingoBalls en global anda bien. Si lo paso como parametro no. En parámetro iría como array o dif?
+const bingoBalls = [];
 const newTurn = () => {
-    const bingoBalls = [];
     let roundBall;
     do {
         roundBall = Math.ceil(Math.random() * 5);
@@ -103,7 +100,7 @@ const bingoGame = () => {
     const roundBall = newTurn();
     // Se fija si esta en el carton la bollilla y la tacha
     checkPlayersCard(bingoCardNumbers, roundBall);
-    //
+    
     askNewTurn(bingoCardNumbers, userName);
 }
 bingoGame();
