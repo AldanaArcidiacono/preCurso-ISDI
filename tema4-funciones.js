@@ -28,7 +28,7 @@ myName("Aldana ") + myAge(24);
 // Ejercicio 5.1
 myName("Aldana ") + (myAge(24) + 5).toString();
 
-// Ejercicio 6---------------------------------------Ejercicio sin sentido aparente
+// Ejercicio 6---------------------------------------
 myName(varName) + myAge(varAge);
 
 // Ejercicio 7
@@ -41,7 +41,7 @@ myName(varName) + myAge(varAge);
 // }
 // myInfo("Aldana ",24);
 
-// Ejercicio 8---------------------------------------No tengo idea que quiere que haga
+// Ejercicio 8---------------------------------------
 const myInfo = (string, num) => {
     const randomNumber = (num) => {
         Math.floor(Math.random() * 2);
