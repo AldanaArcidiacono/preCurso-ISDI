@@ -1,6 +1,14 @@
-const amountOfNumbers = 25;
+let didLine = false;
 const lengthOfLine = 5;
 const lengthOfCard = 15;
+let currentPlayerScore = 100;
+
+let playerNames = [
+    {name: "Donna", score: 87},
+    {name: "Amy", score: 35},
+    {name: "Rose", score: 6}
+];
+console.log(playerNames);
 
 const greetingAndGetName = () => {
     let userName = prompt("Bienvenido a BINGO GAME!🤗🎲🎱 Cuál es tu nombre?");
@@ -10,6 +18,19 @@ const greetingAndGetName = () => {
     alert(`Hola ${userName}! A continuación se iniciará el juego.`)
     return userName;
 }
+
+// NO FUNCIONA
+const storePlayerNames = (userName) => {
+    if (userName !== playerNames.name){
+        playerNames.push({name: userName, score: currentPlayerScore})
+    }
+}
+console.log(playerNames);
+
+const scoringSystem = () => {
+    alert("Al comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado el juego, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás")
+}
+
 
 const isTheNumberInTheCard = (array, randomNumber) => {
     let foundIt = false;
@@ -37,7 +58,7 @@ const generateBingoCard = () => {
     let randomNumber;
     for(let i = 0; i < lengthOfCard; i++){
         do {
-            randomNumber = Math.ceil(Math.random() * amountOfNumbers);
+            randomNumber = Math.ceil(Math.random() * (99 - 1) + 1);
         } while(isTheNumberInTheCard(bingoCardEmpty, randomNumber));
         bingoCardEmpty = addNumberToBingoCard(bingoCardEmpty, randomNumber);
     }
@@ -69,7 +90,7 @@ const bingoBalls = [];
 const generateRoundBall = () => {
     let roundBall;
     do {
-        roundBall = Math.ceil(Math.random() * amountOfNumbers);
+        roundBall = Math.ceil(Math.random() * (99 - 1) + 1);
     } while (bingoBalls.some(ball => ball === roundBall))
     bingoBalls.push(roundBall);
     alert(`Ha salido la bolilla número ${roundBall}🎱!`);
@@ -77,20 +98,24 @@ const generateRoundBall = () => {
     return roundBall;
 }
 
-const checkPlayersCard = (array, roundBall) => {
+const checkPlayersCard = (userName, array, roundBall) => {
     array.forEach(item => item.forEach(element => {
         if (element.number === roundBall) {
             element.number = "X";
             element.matched = true;
             }
     }));
+    let playersLine = false;
+    if (!playersLine) {
+        playersLine = checkIfLine(userName, array);
+    }
     showBingoCard(array);
     return array;
 }
 
 const checkIfBingo = (array) => {
     if (array.some(item =>item.some(element => !element.matched))){
-        //checkIfLine();
+        // checkIfLine(userName, array);
         return false;
     } else {
         alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas!🎱`);
@@ -98,9 +123,15 @@ const checkIfBingo = (array) => {
     }
 }
 
-const checkIfLine = () => {
-    // Para saber si tengo linea, tengo que haber almacenado mi array en 3 sub arrays
-}
+const checkIfLine = (userName, array) => {
+    if (array.some(item => !item.some(element => !element.matched))) {
+    didLine = true;
+    alert(`${userName} haz hecho línea!🎱`);
+    console.log(`${userName} haz hecho línea!🎱`);
+    return didLine;
+    }
+    return didLine;
+};
 
 const askNewTurn = (userName, array) => {
     let playersNewTurn = true;
@@ -109,7 +140,7 @@ const askNewTurn = (userName, array) => {
         playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar una bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
         if (playersNewTurn){
             roundBall = generateRoundBall();
-            array = checkPlayersCard(array, roundBall);
+            array = checkPlayersCard(userName, array, roundBall);
         }
     }
     if (!playersNewTurn){
@@ -128,6 +159,7 @@ const playAgain = (userName) => {
 
 // Main Function
 const bingoGame = () => {
+    
     const userName = greetingAndGetName();
     const bingoCardNumbers = generateBingoCard();
     let userBingoCard = chooseBingoCard(bingoCardNumbers);
