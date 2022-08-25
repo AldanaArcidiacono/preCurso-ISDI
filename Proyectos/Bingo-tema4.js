@@ -111,20 +111,15 @@ const scoringSystem = () => {
     return currentPlayerScore;
 }
 
-const storingPlayerNames = (userName) => {
-    let wasAdded = false;
+const storingPlayerNames = (userName, currentPlayerScore) => {
     let playerNames = [
-        {name: "Donna", score: 87},
-        {name: "Amy", score: 35},
-        {name: "Rose", score: 6}
+        {name: "Donna", score: 85},
+        {name: "Amy", score: 22},
+        {name: "Rose", score: 6},
+        {name: `${userName}`, score: `${currentPlayerScore}`}
     ];
-    playerNames.some(item => {
-        if (userName !== item.name && !wasAdded) {
-            playerNames.push({name: userName, score: currentPlayerScore})
-            wasAdded = true;
-        }
-    })
-    console.log(playerNames);
+    playerNames.sort((a , b) => b.score - a.score);  
+    alert(`Este es el ranking de nuestros usuarios:\n${playerNames[0].name}: ${playerNames[0].score} puntos\n${playerNames[1].name}: ${playerNames[1].score} puntos\n${playerNames[2].name}: ${playerNames[2].score} puntos\n${playerNames[3].name}: ${playerNames[3].score} puntos`);
 }
 
 const checkIfWin = (userName, array) => {
@@ -132,9 +127,9 @@ const checkIfWin = (userName, array) => {
         return false;
     } else {
         currentPlayerScore = scoringSystem();
-        storingPlayerNames(userName);
         alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
         console.log(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
+        storingPlayerNames(userName, currentPlayerScore);
         return true;
     }
 }
@@ -150,11 +145,6 @@ const askNewTurn = (userName, array) => {
         }
     }
 }
-
-// const scoreRanking = (arrayOfPlayers) => {
-///////////// QUE SE VEAN DE MAYOR A MENOR PUNTAJE, SE VEA EL DEL JUGADOR NUEVO Y SEA MÁS DINÁMICO
-//     alert(`Este es el ranking de nuestros usuarios:\n${arrayOfPlayers[0].name}: ${arrayOfPlayers[0].score} puntos\n${arrayOfPlayers[1].name}: ${arrayOfPlayers[1].score} puntos\n${arrayOfPlayers[2].name}: ${arrayOfPlayers[2].score} puntos`)
-// }
 
 const playAgain = (userName) => {
     const newGame = confirm("Haz click en 'aceptar' si deseas jugar de nuevo🎲🎱. De lo contrario, haz click en 'cancelar'");
