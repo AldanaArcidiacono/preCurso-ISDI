@@ -4,12 +4,6 @@ const lengthOfCard = 15;
 let startingPlayerScore = 100;
 let currentPlayerScore;
 
-let playerNames = [
-    {name: "Donna", score: 87},
-    {name: "Amy", score: 35},
-    {name: "Rose", score: 6}
-];
-
 const bingoBalls = [];
 
 // Auxiliary functions
@@ -117,34 +111,38 @@ const scoringSystem = () => {
     return currentPlayerScore;
 }
 
-//Me esta agregando al jugador actual dos veces
-const storingPlayerNames = (userName, arrayOfPlayers) => {
+const storingPlayerNames = (userName) => {
     let wasAdded = false;
-    arrayOfPlayers.some(item => {
+    let playerNames = [
+        {name: "Donna", score: 87},
+        {name: "Amy", score: 35},
+        {name: "Rose", score: 6}
+    ];
+    playerNames.some(item => {
         if (userName !== item.name && !wasAdded) {
-            arrayOfPlayers.push({name: userName, score: currentPlayerScore})
+            playerNames.push({name: userName, score: currentPlayerScore})
             wasAdded = true;
         }
     })
     console.log(playerNames);
 }
 
-const checkIfWin = (userName, array, arrayOfPlayers) => {
+const checkIfWin = (userName, array) => {
     if (array.some(item =>item.some(element => !element.matched))){
         return false;
     } else {
         currentPlayerScore = scoringSystem();
-        storingPlayerNames(userName, arrayOfPlayers);
+        storingPlayerNames(userName);
         alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
         console.log(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
         return true;
     }
 }
 
-const askNewTurn = (userName, array, arrayOfPlayers) => {
+const askNewTurn = (userName, array) => {
     let playersNewTurn = true;
     let roundBall;
-    while (playersNewTurn && !checkIfWin(userName, array, arrayOfPlayers)) {
+    while (playersNewTurn && !checkIfWin(userName, array)) {
         playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar una bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
         if (playersNewTurn){
             roundBall = generateRoundBall();
@@ -172,8 +170,7 @@ const bingoGame = () => {
     const userName = greetingAndGetName();
     const bingoCardNumbers = generateBingoCard();
     let userBingoCard = chooseBingoCard(bingoCardNumbers);
-    askNewTurn(userName, userBingoCard, playerNames);
-    storingPlayerNames(userName, playerNames);
+    askNewTurn(userName, userBingoCard);
     playAgain(userName);
 }
 bingoGame();
