@@ -15,10 +15,9 @@ const greetingAndGetName = () => {
     while (userName === "" || userName === null) {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
-    alert(`Hola ${userName}! A continuación se iniciará el juego.`)
+    alert(`Hola ${userName}! A continuación se iniciará el juego.\nAl comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás`);
     return userName;
 }
-const userName = greetingAndGetName();
 
 const storePlayerNames = (userName, array) => {
     let wasAdded = false;
@@ -28,12 +27,6 @@ const storePlayerNames = (userName, array) => {
             wasAdded = true;
         }
     })
-}
-storePlayerNames(userName, playerNames);
-console.log(playerNames);
-
-const scoringSystem = () => {
-    alert("Al comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado el juego, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás")
 }
 
 const isTheNumberInTheCard = (array, randomNumber) => {
@@ -136,6 +129,10 @@ const checkIfBingo = (array) => {
     }
 }
 
+const scoringSystem = () => {
+    
+}
+
 const askNewTurn = (userName, array) => {
     let playersNewTurn = true;
     let roundBall;
@@ -145,9 +142,6 @@ const askNewTurn = (userName, array) => {
             roundBall = generateRoundBall();
             array = checkPlayersCard(userName, array, roundBall);
         }
-    }
-    if (!playersNewTurn){
-       alert(`Gracias por jugar a BINGO GAME ${userName}!🤗🎲🎱 Nos vemos la próxima!👋🏻`);
     }
 }
 
@@ -163,6 +157,7 @@ const playAgain = (userName) => {
 // Main Function
 const bingoGame = () => {
     const userName = greetingAndGetName();
+    storePlayerNames(userName, playerNames);
     const bingoCardNumbers = generateBingoCard();
     let userBingoCard = chooseBingoCard(bingoCardNumbers);
     askNewTurn(userName, userBingoCard);
