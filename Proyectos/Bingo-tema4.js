@@ -1,15 +1,18 @@
 let didLine = false;
 const lengthOfLine = 5;
 const lengthOfCard = 15;
-let currentPlayerScore = 100;
+let starringPlayerScore = 100;
+let currentPlayerScore;
 
 let playerNames = [
     {name: "Donna", score: 87},
     {name: "Amy", score: 35},
     {name: "Rose", score: 6}
 ];
-console.log(playerNames);
 
+const bingoBalls = [];
+
+// Auxiliary functions
 const greetingAndGetName = () => {
     let userName = prompt("Bienvenido a BINGO GAME!🤗🎲🎱 Cuál es tu nombre?");
     while (userName === "" || userName === null) {
@@ -17,16 +20,6 @@ const greetingAndGetName = () => {
     }
     alert(`Hola ${userName}! A continuación se iniciará el juego.\nAl comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás`);
     return userName;
-}
-
-const storePlayerNames = (userName, array) => {
-    let wasAdded = false;
-    array.some(item => {
-        if (userName !== item.name && !wasAdded) {
-            array.push({name: userName, score: currentPlayerScore})
-            wasAdded = true;
-        }
-    })
 }
 
 const isTheNumberInTheCard = (array, randomNumber) => {
@@ -83,7 +76,6 @@ const chooseBingoCard = (array) => {
     return myBingoCard;
 }
 
-const bingoBalls = [];
 const generateRoundBall = () => {
     let roundBall;
     do {
@@ -96,7 +88,7 @@ const generateRoundBall = () => {
 }
 
 const checkIfLine = (userName, array) => {
-    if (array.some(item => !item.some(element => !element.matched))) {
+    if (!didLine && array.some(item => !item.some(element => !element.matched))) {
     didLine = true;
     alert(`${userName} haz hecho línea!🎱`);
     console.log(`${userName} haz hecho línea!🎱`);
@@ -124,14 +116,38 @@ const checkIfBingo = (array) => {
     if (array.some(item =>item.some(element => !element.matched))){
         return false;
     } else {
-        alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas!🎱`);
+        alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas!🤗🎲🎱`);
+        console.log(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas!🤗🎲🎱`);
         return true;
     }
 }
 
 const scoringSystem = () => {
-    
+    currentPlayerScore = starringPlayerScore - bingoBalls.length;
+    return currentPlayerScore;
 }
+
+const storePlayerNames = (userName, arrayOfPlayers) => {
+    let wasAdded = false;
+    arrayOfPlayers.some(item => {
+        if (userName !== item.name && !wasAdded) {
+            arrayOfPlayers.push({name: userName, score: currentPlayerScore})
+            wasAdded = true;
+        }
+    })
+}
+
+// const checkIfBingo = (userName, array, arrayOfPlayers) => {
+//     if (array.some(item =>item.some(element => !element.matched))){
+//         return false;
+//     } else {
+//         currentPlayerScore = scoringSystem();
+//         storePlayerNames(userName, arrayOfPlayers);
+//         alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
+//          console.log(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
+//         return true;
+//     }
+// }
 
 const askNewTurn = (userName, array) => {
     let playersNewTurn = true;
@@ -146,7 +162,7 @@ const askNewTurn = (userName, array) => {
 }
 
 const playAgain = (userName) => {
-    const newGame = confirm("Haz click en 'aceptar' si deseas jugar de nuevo. De lo contrario, haz click en 'cancelar'");
+    const newGame = confirm("Haz click en 'aceptar' si deseas jugar de nuevo🎲🎱. De lo contrario, haz click en 'cancelar'");
     if (newGame){
         bingoGame();
     } else {
@@ -157,10 +173,10 @@ const playAgain = (userName) => {
 // Main Function
 const bingoGame = () => {
     const userName = greetingAndGetName();
-    storePlayerNames(userName, playerNames);
     const bingoCardNumbers = generateBingoCard();
     let userBingoCard = chooseBingoCard(bingoCardNumbers);
     askNewTurn(userName, userBingoCard);
+    storePlayerNames(userName, playerNames);
     playAgain(userName);
 }
 bingoGame();
