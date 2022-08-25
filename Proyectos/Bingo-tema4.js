@@ -18,19 +18,23 @@ const greetingAndGetName = () => {
     alert(`Hola ${userName}! A continuación se iniciará el juego.`)
     return userName;
 }
+const userName = greetingAndGetName();
 
-// NO FUNCIONA
-const storePlayerNames = (userName) => {
-    if (userName !== playerNames.name){
-        playerNames.push({name: userName, score: currentPlayerScore})
-    }
+const storePlayerNames = (userName, array) => {
+    let wasAdded = false;
+    array.some(item => {
+        if (userName !== item.name && !wasAdded) {
+            array.push({name: userName, score: currentPlayerScore})
+            wasAdded = true;
+        }
+    })
 }
+storePlayerNames(userName, playerNames);
 console.log(playerNames);
 
 const scoringSystem = () => {
     alert("Al comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado el juego, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás")
 }
-
 
 const isTheNumberInTheCard = (array, randomNumber) => {
     let foundIt = false;
@@ -98,6 +102,16 @@ const generateRoundBall = () => {
     return roundBall;
 }
 
+const checkIfLine = (userName, array) => {
+    if (array.some(item => !item.some(element => !element.matched))) {
+    didLine = true;
+    alert(`${userName} haz hecho línea!🎱`);
+    console.log(`${userName} haz hecho línea!🎱`);
+    return didLine;
+    }
+    return didLine;
+};
+
 const checkPlayersCard = (userName, array, roundBall) => {
     array.forEach(item => item.forEach(element => {
         if (element.number === roundBall) {
@@ -115,23 +129,12 @@ const checkPlayersCard = (userName, array, roundBall) => {
 
 const checkIfBingo = (array) => {
     if (array.some(item =>item.some(element => !element.matched))){
-        // checkIfLine(userName, array);
         return false;
     } else {
         alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas!🎱`);
         return true;
     }
 }
-
-const checkIfLine = (userName, array) => {
-    if (array.some(item => !item.some(element => !element.matched))) {
-    didLine = true;
-    alert(`${userName} haz hecho línea!🎱`);
-    console.log(`${userName} haz hecho línea!🎱`);
-    return didLine;
-    }
-    return didLine;
-};
 
 const askNewTurn = (userName, array) => {
     let playersNewTurn = true;
@@ -159,7 +162,6 @@ const playAgain = (userName) => {
 
 // Main Function
 const bingoGame = () => {
-    
     const userName = greetingAndGetName();
     const bingoCardNumbers = generateBingoCard();
     let userBingoCard = chooseBingoCard(bingoCardNumbers);
