@@ -1,39 +1,25 @@
 let didLine = false;
 const lengthOfLine = 5;
 const lengthOfCard = 15;
-let currentPlayerScore = 100;
+let startingPlayerScore = 100;
+let currentPlayerScore;
 
 let playerNames = [
     {name: "Donna", score: 87},
     {name: "Amy", score: 35},
     {name: "Rose", score: 6}
 ];
-console.log(playerNames);
 
+const bingoBalls = [];
+
+// Auxiliary functions
 const greetingAndGetName = () => {
-    let userName = prompt("Bienvenido a BINGO GAME!🤗🎲🎱 Cuál es tu nombre?");
+    let userName = prompt("Bienvenido a BINGO GAME!🤗🎲🎱 Cuál es tu nombre?","Martha");
     while (userName === "" || userName === null) {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
-    alert(`Hola ${userName}! A continuación se iniciará el juego.`)
+    alert(`Hola ${userName}! A continuación se iniciará el juego.\nAl comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás`);
     return userName;
-}
-const userName = greetingAndGetName();
-
-const storePlayerNames = (userName, array) => {
-    let wasAdded = false;
-    array.some(item => {
-        if (userName !== item.name && !wasAdded) {
-            array.push({name: userName, score: currentPlayerScore})
-            wasAdded = true;
-        }
-    })
-}
-storePlayerNames(userName, playerNames);
-console.log(playerNames);
-
-const scoringSystem = () => {
-    alert("Al comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado el juego, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás")
 }
 
 const isTheNumberInTheCard = (array, randomNumber) => {
@@ -90,7 +76,6 @@ const chooseBingoCard = (array) => {
     return myBingoCard;
 }
 
-const bingoBalls = [];
 const generateRoundBall = () => {
     let roundBall;
     do {
@@ -103,7 +88,7 @@ const generateRoundBall = () => {
 }
 
 const checkIfLine = (userName, array) => {
-    if (array.some(item => !item.some(element => !element.matched))) {
+    if (!didLine && array.some(item => !item.some(element => !element.matched))) {
     didLine = true;
     alert(`${userName} haz hecho línea!🎱`);
     console.log(`${userName} haz hecho línea!🎱`);
@@ -127,32 +112,54 @@ const checkPlayersCard = (userName, array, roundBall) => {
     return array;
 }
 
-const checkIfBingo = (array) => {
+const scoringSystem = () => {
+    currentPlayerScore = startingPlayerScore - bingoBalls.length;
+    return currentPlayerScore;
+}
+
+//Me esta agregando al jugador actual dos veces
+const storingPlayerNames = (userName, arrayOfPlayers) => {
+    let wasAdded = false;
+    arrayOfPlayers.some(item => {
+        if (userName !== item.name && !wasAdded) {
+            arrayOfPlayers.push({name: userName, score: currentPlayerScore})
+            wasAdded = true;
+        }
+    })
+    console.log(playerNames);
+}
+
+const checkIfWin = (userName, array, arrayOfPlayers) => {
     if (array.some(item =>item.some(element => !element.matched))){
         return false;
     } else {
-        alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas!🎱`);
+        currentPlayerScore = scoringSystem();
+        storingPlayerNames(userName, arrayOfPlayers);
+        alert(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
+        console.log(`Felicitaciones! Has ganado en ${bingoBalls.length} rondas y haz hecho ${currentPlayerScore} puntos!🤗🎲🎱`);
         return true;
     }
 }
 
-const askNewTurn = (userName, array) => {
+const askNewTurn = (userName, array, arrayOfPlayers) => {
     let playersNewTurn = true;
     let roundBall;
-    while (playersNewTurn && !checkIfBingo(array)) {
+    while (playersNewTurn && !checkIfWin(userName, array, arrayOfPlayers)) {
         playersNewTurn = confirm("Haz click en 'aceptar' si deseas sacar una bolilla🎱. Haz click en 'cancelar' si quieres salir del juego.");
         if (playersNewTurn){
             roundBall = generateRoundBall();
             array = checkPlayersCard(userName, array, roundBall);
         }
     }
-    if (!playersNewTurn){
-       alert(`Gracias por jugar a BINGO GAME ${userName}!🤗🎲🎱 Nos vemos la próxima!👋🏻`);
-    }
 }
 
+// const scoreRanking = (arrayOfPlayers) => {
+///////////// QUE SE VEAN DE MAYOR A MENOR PUNTAJE, SE VEA EL DEL JUGADOR NUEVO Y SEA MÁS DINÁMICO
+//     alert(`Este es el ranking de nuestros usuarios:\n${arrayOfPlayers[0].name}: ${arrayOfPlayers[0].score} puntos\n${arrayOfPlayers[1].name}: ${arrayOfPlayers[1].score} puntos\n${arrayOfPlayers[2].name}: ${arrayOfPlayers[2].score} puntos`)
+// }
+
 const playAgain = (userName) => {
-    const newGame = confirm("Haz click en 'aceptar' si deseas jugar de nuevo. De lo contrario, haz click en 'cancelar'");
+    const newGame = confirm("Haz click en 'aceptar' si deseas jugar de nuevo🎲🎱. De lo contrario, haz click en 'cancelar'");
     if (newGame){
         bingoGame();
     } else {
@@ -165,7 +172,8 @@ const bingoGame = () => {
     const userName = greetingAndGetName();
     const bingoCardNumbers = generateBingoCard();
     let userBingoCard = chooseBingoCard(bingoCardNumbers);
-    askNewTurn(userName, userBingoCard);
+    askNewTurn(userName, userBingoCard, playerNames);
+    storingPlayerNames(userName, playerNames);
     playAgain(userName);
 }
 bingoGame();
