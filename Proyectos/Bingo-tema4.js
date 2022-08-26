@@ -12,7 +12,7 @@ const greetingAndGetName = () => {
     while (userName === "" || userName === null) {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
-    alert(`Hola ${userName}! A continuación se iniciará el juego.\nAl comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado, se te restará 1 punto.\nCuantas menos rondas uses, más puntos obrendrás`);
+    alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona.\nPodrás cantar línea sólo una vez, al obtener todos los números de una misma fila.\nAl comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado, se te restará 1 punto. Cuantas menos rondas uses, más puntos obrendrás.`);
     return userName;
 }
 
@@ -22,7 +22,7 @@ const isTheNumberInTheCard = (array, randomNumber) => {
         if (element.number === randomNumber) {
             foundIt = true;
         }
-    })) 
+    })); 
     return foundIt;
 }
 
