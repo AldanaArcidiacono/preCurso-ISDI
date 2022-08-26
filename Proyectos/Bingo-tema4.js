@@ -84,9 +84,27 @@ const generateRoundBall = () => {
 const checkIfLine = (userName, array) => {
     if (!didLine && array.some(item => !item.some(element => !element.matched))) {
     didLine = true;
-    alert(`${userName} haz hecho línea!🎱`);
-    console.log(`${userName} haz hecho línea!🎱`);
-    return didLine;
+
+        if (didLine && bingoBalls.length < 30) {
+            startingPlayerScore + 30
+        }
+
+    //línea en las primeras 30 rondas, le suma 30 puntos. Si hizo entre la 31 y 60, le suma 20. Y si hizo entre 61 y 99 le suma 10.
+        switch (didLine){
+            case bingoBalls.length <= 30:
+                startingPlayerScore + 30;
+            break;
+            case bingoBalls.length >= 31 <= 60:
+                startingPlayerScore + 20;
+            break;
+            case bingoBalls.length >= 61 <= 99:
+                startingPlayerScore + 10;
+            break;
+        }
+
+        alert(`${userName} haz hecho línea!🎱`);
+        console.log(`${userName} haz hecho línea!🎱`);
+        return didLine;
     }
     return didLine;
 };
@@ -114,8 +132,8 @@ const scoringSystem = () => {
 const storingPlayerNames = (userName, currentPlayerScore) => {
     let playerNames = [
         {name: "Donna", score: 85},
-        {name: "Amy", score: 22},
         {name: "Rose", score: 6},
+        {name: "Amy", score: 22},
         {name: `${userName}`, score: `${currentPlayerScore}`}
     ];
     playerNames.sort((a , b) => b.score - a.score);  
