@@ -12,7 +12,7 @@ const greetingAndGetName = () => {
     while (userName === "" || userName === null) {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
-    alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona.\nPodrás cantar línea sólo una vez, al obtener todos los números de una misma fila.\nAl comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado, se te restará 1 punto. Cuantas menos rondas uses, más puntos obrendrás.`);
+    alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona.\nPodrás cantar línea sólo una vez, al obtener todos los números de una misma fila. Y dependiendo de en que ronda la saques, obtendrás puntos extras.\nAl comenzar el Bingo, tendrás 100 puntos. Sin embargo, cada ronda que pases sin haber ganado, se te restará 1 punto. Cuantas menos rondas uses, más puntos obrendrás.`);
     return userName;
 }
 
@@ -22,7 +22,7 @@ const isTheNumberInTheCard = (array, randomNumber) => {
         if (element.number === randomNumber) {
             foundIt = true;
         }
-    })); 
+    }));
     return foundIt;
 }
 
@@ -55,13 +55,13 @@ const showBingoCard = (array) => {
     console.log(array[0][0].number + " " + array[0][1].number + " " + array[0][2].number + " " + array[0][3].number + " " + array[0][4].number);
     console.log(array[1][0].number + " " + array[1][1].number + " " + array[1][2].number + " " + array[1][3].number + " " + array[1][4].number);
     console.log(array[2][0].number + " " + array[2][1].number + " " + array[2][2].number + " " + array[2][3].number + " " + array[2][4].number);
-}    
+}
 
 const chooseBingoCard = (array) => {
     let userLikesBingoCard = confirm("Haz click en 'aceptar' si deseas jugar con este cartón, o en 'cancelar' si quieres un cartón diferente.");
     if (userLikesBingoCard){
         return array;
-    } 
+    }
     let myBingoCard;
     do {
         myBingoCard = generateBingoCard();
@@ -84,24 +84,17 @@ const generateRoundBall = () => {
 const checkIfLine = (userName, array) => {
     if (!didLine && array.some(item => !item.some(element => !element.matched))) {
     didLine = true;
-
-        if (didLine && bingoBalls.length < 30) {
-            startingPlayerScore + 30
-        }
-
-    //línea en las primeras 30 rondas, le suma 30 puntos. Si hizo entre la 31 y 60, le suma 20. Y si hizo entre 61 y 99 le suma 10.
         switch (didLine){
             case bingoBalls.length <= 30:
-                startingPlayerScore + 30;
+                startingPlayerScore += 50;
             break;
-            case bingoBalls.length >= 31 <= 60:
-                startingPlayerScore + 20;
+            case bingoBalls.length >= 31 && bingoBalls.length <= 60:
+                startingPlayerScore += 35;
             break;
-            case bingoBalls.length >= 61 <= 99:
-                startingPlayerScore + 10;
+            case bingoBalls.length >= 61 && bingoBalls.length <= 99:
+                startingPlayerScore += 25;
             break;
         }
-
         alert(`${userName} haz hecho línea!🎱`);
         console.log(`${userName} haz hecho línea!🎱`);
         return didLine;
@@ -131,12 +124,12 @@ const scoringSystem = () => {
 
 const storingPlayerNames = (userName, currentPlayerScore) => {
     let playerNames = [
-        {name: "Donna", score: 85},
-        {name: "Rose", score: 6},
-        {name: "Amy", score: 22},
+        {name: "Donna", score: `${Math.floor(Math.random() * (84 - 1) + 1)}`},
+        {name: "Clara", score: `${Math.floor(Math.random() * (84 - 1) + 1)}`},
+        {name: "Amy", score: `${Math.floor(Math.random() * (84 - 1) + 1)}`},
         {name: `${userName}`, score: `${currentPlayerScore}`}
     ];
-    playerNames.sort((a , b) => b.score - a.score);  
+    playerNames.sort((a , b) => b.score - a.score);
     alert(`Este es el ranking de nuestros usuarios:\n${playerNames[0].name}: ${playerNames[0].score} puntos\n${playerNames[1].name}: ${playerNames[1].score} puntos\n${playerNames[2].name}: ${playerNames[2].score} puntos\n${playerNames[3].name}: ${playerNames[3].score} puntos`);
 }
 
