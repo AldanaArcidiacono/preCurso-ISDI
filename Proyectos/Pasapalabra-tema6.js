@@ -37,12 +37,16 @@ const greetingAndGetName = () => {
     while (userName === "" || userName === null) {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
-    // Explicar aquí cómo funcionan los puntos, una vez lo tenga definido.
+    // Explicar aquí cómo funcionan los puntos, una vez lo tenga definido. Indicar cuanto tiempo tiene para respodner el rosco
     alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona.`);
     return userName;
 }
 
+timeToAnswer(function(){
+    console.log("Hola Mundo");
+}, 2000);
 
+console.log("setTimeout() Ejemplo...");
 
 // Esto debería aprecer al final. Acomodar puntos una vez este definido.
 // const storingPlayerNames = (userName, currentPlayerScore) => {
@@ -66,5 +70,7 @@ const greetingAndGetName = () => {
 // }
 
 // Main function:
-const alphabeticalGame = () => {};
+const alphabeticalGame = () => {
+    const userName = greetingAndGetName();
+};
 alphabeticalGame();
