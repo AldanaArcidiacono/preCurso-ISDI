@@ -57,21 +57,24 @@ const askAndVerifyAnswer = (array, userName) => {
         const roundQuestion = prompt(`${array[i].question}`).toLowerCase().trim();
         switch (roundQuestion) {
             case "pasapalabra":
-                console.log("Pasapalabra");
+                array[i].status = 1;
+                console.log("Pasapalabra", array[i].status);
             break;
             case "":
-                console.log("Pasapalabra", "de string vacio");
+                array[i].status = 1;
+                console.log("Pasapalabra", "de string vacio", array[i].status);
             break;
             case array[i].answer:
-                console.log("Respuesta correcta");
+                array[i].status = 2;
+                console.log("Respuesta correcta", array[i].status);
+            break;
+            case "end":
+                quitGame(userName);
+                return;
             break;
             default:
-                console.log("Respuesta INCOrrecta");
-        }
-
-        if(roundQuestion === "end"){
-            quitGame(userName);
-            return;
+                array[i].status = 3;
+                console.log("Respuesta INCOrrecta", array[i].status);
         }
     }
 }
