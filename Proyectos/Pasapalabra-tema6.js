@@ -52,21 +52,31 @@ const greetingAndGetName = () => {
 // }, 2000);
 // console.log("setTimeout() Ejemplo...");
 
-const abcQuestions = (userName) => {
-    for(let i = 0; i < questions.length; i++){
-        const roundQuestion = prompt(`${questions[i].question}`).toLowerCase().trim();
+const askAndVerifyAnswer = (array, userName) => {
+    for(let i = 0; i < array.length; i++){
+        const roundQuestion = prompt(`${array[i].question}`).toLowerCase().trim();
+        switch (roundQuestion) {
+            case "pasapalabra":
+                console.log("Pasapalabra");
+            break;
+            case "":
+                console.log("Pasapalabra", "de string vacio");
+            break;
+            case array[i].answer:
+                console.log("Respuesta correcta");
+            break;
+            default:
+                console.log("Respuesta INCOrrecta");
+        }
+
         if(roundQuestion === "end"){
             quitGame(userName);
             return;
-        } else {
-            verifyAnswer();
         }
     }
 }
 
-const verifyAnswer = () => {
-    
-}
+
 
 // Esto debería aprecer al final. Acomodar puntos una vez este definido.
 // const storingPlayerNames = (userName, currentPlayerScore) => {
@@ -92,11 +102,12 @@ const verifyAnswer = () => {
 
 const quitGame = (userName) => {
     alert(`Gracias por jugar a Pasapalabra Game! ${userName}!🤗🎡📚 Nos vemos la próxima!👋🏻`);
+    return;
 }
 
 // Main function:
 const alphabeticalGame = () => {
     const userName = greetingAndGetName();
-    abcQuestions(userName);
+    askAndVerifyAnswer(questions, userName);
 };
 alphabeticalGame();
