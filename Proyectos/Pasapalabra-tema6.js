@@ -36,47 +36,47 @@ const questions = [
         {letter: "d", answer: "devoto", status: 0, question: "CON LA D. Dedicado con fervor a obras de piedad y religión.",},
         {letter: "e", answer: "entera", status: 0, question: "CON LA E. Se dice de la leche que conserva toda la grasa y sustancias nutritivas.",},
         {letter: "f", answer: "forestal", status: 0, question: "CON LA F. Perteneciente o relativo a los bosques y a los aprovechamientos de leñas o pastos.",},
-        {letter: "g", answer: "gorigori", status: 0, question: "CON LA G. Coloquialmente canto fúnebre con el que se acompañan los entierros.",},
+        {letter: "g", answer: "george lucas", status: 0, question: "CON LA G. Creador de Star Wars.",},
         {letter: "h", answer: "hombrera", status: 0, question: "CON LA H. Adorno especial de los vestidos en la parte correspondiente a los hombros.",},
         {letter: "i", answer: "intuir", status: 0, question: "CON LA I. Percibir íntima e instantáneamente una idea o verdad tal como si se la tuviera a la vista.",},
         {letter: "j", answer: "jornada", status: 0, question: "CON LA J. Tiempo de duración del trabajo diario.",},
         {letter: "k", answer: "kilometro", status: 0, question: "CON LA K. Medida de longitud que equivale a 1000 metros.",},
-        {letter: "l", answer: "lermontov", status: 0, question: "CON LA L. Apellido del poeta ruso autor de la obra La muerte del poeta de 1837.",},
+        {letter: "l", answer: "linguistica", status: 0, question: "CON LA L. Estudio científico del orígen, la evolución y estructura del lenguaje.",},
         {letter: "m", answer: "menor", status: 0, question: "CON LA M. Se dice de una persona que no ha alcanzado la mayoría de edad.",},
         {letter: "n", answer: "ninfa", status: 0, question: "CON LA N. Cada una de las fabulosas deidades de las aguas, bosques o selva.",},
-        {letter: "ñ", answer: "patraña", status: 0, question: "CONTIENE LA Ñ. Mentira o noticia fabulosa de pura invención.",},
-        {letter: "o", answer: "ordenanza", status: 0, question: "CON LA O. Empleado que en ciertas oficinas desempeña funciones subalternas.",},
-        {letter: "p", answer: "prioridad", status: 0, question: "CON LA P. Anterioridad de algo respecto de otra cosa en tiempo u orden.",},
-        {letter: "q", answer: "braquia", status: 0, question: "CONTIENE LA Q. Órgano respiratorio de los peces formado por láminas o filamentos.",},
-        {letter: "r", answer: "renard", status: 0, question: "CON LA R. Apellido del ingeniero francés que, junto a Arthur C. Krebs, construyó el dirigible militar La France en 1884.",},
+        {letter: "ñ", answer: "ñoqui", status: 0, question: "CON LA Ñ. Tipo de pasta italiana, elaborada con patata, harina y queso de ricota.",},
+        {letter: "o", answer: "oscar", status: 0, question: "CON LA O. Nombre con el que es conocido popularmente, el Premio de la Academia de Artes y Ciencias Cinematográficas.",},
+        {letter: "p", answer: "prioridad", status: 0, question: "CON LA P. Ventaja o preferencia que una persona o cosa tiene sobre otra.",},
+        {letter: "q", answer: "branquia", status: 0, question: "CONTIENE LA Q. Órgano respiratorio de los peces formado por láminas o filamentos.",},
+        {letter: "r", answer: "ron", status: 0, question: "CON LA R. Nombre del mejor amigo de Harry Potter.",},
         {letter: "s", answer: "samba", status: 0, question: "CON LA S. Danza popular brasileña de influencia africana cantada de compás binario.",},
-        {letter: "t", answer: "tragaperras", status: 0, question: "CON LA T. Máquina de juegos de azar que funciona introduciendo monedas.",},
+        {letter: "t", answer: "tarzan", status: 0, question: "CON LA T. Película de Disney, en la que el personaje principal es criado por gorilas.",},
         {letter: "u", answer: "usurpar", status: 0, question: "CON LA U. Atribuirse y usar un título o cargo ajeno como si fuera propio.",},
         {letter: "v", answer: "vivienda", status: 0, question: "CON LA V. Lugar cerrado o cubierto construido para ser habitado por personas.",},
         {letter: "w", answer: "waterpolo", status: 0, question: "CON LA W. Deporte de pelota que se juega en la piscina y en el que se enfrentan dos equipos.",},
         {letter: "x", answer: "oxford", status: 0, question: "CONTIENE LA X. Ciudad inglesa cuya universidad compite cada año en una popular regata contra la universidad de Cambridge.",},
-        {letter: "y", answer: "leguleyo", status: 0, question: "CONTIENE LA Y. Persona que aplica el derecho sin rigor y desenfadadamente.",},
-        {letter: "z", answer: "zarandeo", status: 0, question: "CON LA Z. Movimiento repetido y violento de un lado a otro.",}
+        {letter: "y", answer: "ymca", status: 0, question: "CON LA Y. Reconocida cancion de Village People, lanzada en 1978.",},
+        {letter: "z", answer: "zapatilla", status: 0, question: "CON LA Z. Calzado ligero y cómodo, con o sin talón, de tela o cuero fino y suela plana de grosor variable, que se usa dentro de casa.",}
     ],
     [
         {letter: "a", answer: "agenda", status: 0, question: "CON LA A. Libro o cuaderno en el que se apunta para no olvidarlo aquello que se ha de hacer.",},
-        {letter: "b", answer: "bonanza", status: 0, question: "CON LA B. Prosperidad.",},
-        {letter: "c", answer: "caracol", status: 0, question: "CON LA C. Nombre del molusco gasterópodo terrestre de corte en espiral cuya carne puede comerse.",},
-        {letter: "d", answer: "dormir", status: 0, question: "CON LA D. Estar en aquel reposo que consiste en la inacción o suspensión de los sentidos y de todo movimiento voluntarios.",},
-        {letter: "e", answer: "entrecot", status: 0, question: "CON LA E. Trozo de carne sacado de entre costilla y costilla de la res.",},
-        {letter: "f", answer: "farhadi", status: 0, question: "CON LA F. Apellido del cineasta que dirigó la película El Viajante que obtuvo el oscar a la mejor película de habla no inglesa en 2017.",},
-        {letter: "g", answer: "gorgorito", status: 0, question: "CON LA G. Coloquialmente quiebro que se hace con la voz con la garganta al cantar.",},
-        {letter: "h", answer: "hidroavión", status: 0, question: "CON LA H. Avión que lleva en lugar de ruedas uno o cuatro flotadores para posarse sobre el agua.",},
+        {letter: "b", answer: "beatles", status: 0, question: "CON LA B. Reconocida banda de rock britanica, durante los años 60'.",},
+        {letter: "c", answer: "caracol", status: 0, question: "CON LA C. Animal que se mueve lentamente.",},
+        {letter: "d", answer: "dormir", status: 0, question: "CON LA D. Estar de reposo que consiste en la inacción o suspensión de los sentidos y de todo movimiento voluntarios.",},
+        {letter: "e", answer: "eleven", status: 0, question: "CON LA E. Nombre del personaje protagonista de Stranger Things.",},
+        {letter: "f", answer: "finn", status: 0, question: "CON LA F. Nombre del personaje principal de la serie animada Hora de Aventura.",},
+        {letter: "g", answer: "gato", status: 0, question: "CON LA G. Felino.",},
+        {letter: "h", answer: "harry potter", status: 0, question: "CON LA H. Reconocida franquicia de J.K.Rowling.",},
         {letter: "i", answer: "inapetencia", status: 0, question: "CON LA I. Falta de gana de comer.",},
         {letter: "j", answer: "jardineria", status: 0, question: "CON LA J. Arte y oficio del jardinero.",},
-        {letter: "k", answer: "kiwi", status: 0, question: "CON LA K. Ave corredora nocturna de unos 50 centimetros de longitud, de pico largo y curvado.",},
+        {letter: "k", answer: "kiwi", status: 0, question: "CON LA K. Fruto de forma ovoide, de tamaño variable y recubierto de una piel fina de color marrón, ligeramente vellosa.",},
         {letter: "l", answer: "lobera", status: 0, question: "CON LA L. Guarida de lobos.",},
-        {letter: "m", answer: "mentira", status: 0, question: "CON LA M. Cosa que se utiliza por el camino que no es verdad con la intención de que sea creída.",},
+        {letter: "m", answer: "mentira", status: 0, question: "CON LA M. Afirmación que una persona hace consciente de que no es verdad.",},
         {letter: "n", answer: "nativo", status: 0, question: "CON LA N. Se aplica al que ha nacido en el lugar de que se trata.",},
         {letter: "ñ", answer: "ñandu", status: 0, question: "CON LA Ñ. Ave corredora similar al avestruz, pero de menor tamaño, habita en las llanuras de América del Sur.",},
         {letter: "o", answer: "organo", status: 0, question: "CON LA O. Parte del animal o vegetal que ejerce una función.",},
-        {letter: "p", answer: "plotino", status: 0, question: "CON LA P. Filósofo romano máximo representante de la escuela neoplatónica y discípulo de Ammonio Sacas de Alejandría.",},
-        {letter: "q", answer: "chisquero", status: 0, question: "CON LA Q. Encendedor antiguo de bolsillo.",},
+        {letter: "p", answer: "perro", status: 0, question: "CON LA P. El mejor amigo del hombre.",},
+        {letter: "q", answer: "arquero", status: 0, question: "CONTIENE LA Q. Soldado que dispara flechas con un arco.",},
         {letter: "r", answer: "rafaga", status: 0, question: "CON LA R. Viento fuerte, resentido y de corta duración.",},
         {letter: "s", answer: "simple", status: 0, question: "CON LA S. Se aplica a lo que no tiene complicación.",},
         {letter: "t", answer: "trece", status: 0, question: "CON LA T. Número cardinal equivalente a 10 + 3.",},
@@ -90,7 +90,7 @@ const questions = [
   ];
 
 // Auxiliary functions
-let wantToPlay = true;
+let wantToQuit = false;
 let wrongAnswer = 0;
 let correctAnswer = 0;
 
@@ -123,7 +123,7 @@ const abcQuestions = (array, userName) => {
         if(array[i].status === 0 || array[i].status === 1){
             let userAnswer = prompt(`${array[i].question}`);
             if(userAnswer === null || userAnswer.toLowerCase().trim() === "end"){
-                wantToPlay = false;
+                wantToQuit = true;
                 quitGame(userName);
                 return;
             } else {
@@ -172,7 +172,7 @@ const playerScores = (userName, correctAnswer) => {
     for (let i = 0; i < playerNames.length; i++) {
         scoringPosition.push(`\r\n${playerNames[i].name}: ${playerNames[i].score} palabras correctas.`);
     }
-    alert(`Este es el ranking de nuestros usuarios:\r\n${scoringPosition}`);
+    alert(`Este es el ranking de nuestros usuarios:\r\n${scoringPosition}\r\nNos vemos la próxima!👋🏻`);
 }
 
 const quitGame = (userName) => {
@@ -186,8 +186,8 @@ const alphabeticalGame = () => {
     const playersArray = selectingQuestions(questions);
     do {
         abcQuestions(playersArray, userName);
-    } while (isPasapalabra(playersArray) && wantToPlay);
-    if (wantToPlay){
+    } while (isPasapalabra(playersArray) && !wantToQuit);
+    if (!wantToQuit){
         alert(`${userName}, has terminado el juego!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente y te equivocaste en ${wrongAnswer}`);
         playerScores(userName, correctAnswer);
     }
