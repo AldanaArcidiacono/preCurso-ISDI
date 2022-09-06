@@ -93,14 +93,15 @@ const questions = [
 let wantToQuit = false;
 let wrongAnswer = 0;
 let correctAnswer = 0;
+let hasTimeToPlay = true;
+let countTime;
 
 const greetingAndGetName = () => {
     let userName = prompt("Bienvenido a Pasapalabra Game!🎮🎡📚 Cuál es tu nombre?","Martha");
     while (userName === "" || userName === null) {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
-    // Explicar aquí cómo funcionan los puntos, una vez lo tenga definido. Indicar cuanto tiempo tiene para respodner el rosco
-    alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona.\nCada ronda, se te hará una pregunta con cada una de las letras del abecedario.\nSi no sabes alguna de ellas, puedes escribir "pasapalabra" o darle a "aceptar" y responderla en la siguiente ronda.\n Tendrás  segundos para completar el juego.\r\n Suerte!🎡🍀`);
+    alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona:\r\n•Cada ronda, se te hará una pregunta con cada una de las letras del abecedario.\n•Si no sabes alguna de ellas, puedes escribir "pasapalabra" o clikear "aceptar" y responderla en la siguiente ronda.\n•Tendrás 2 minutos para completar el juego.\n•Si deseas salir, puedes escribir "end" o clikear "cancelar".\r\nSuerte!🎡🍀`);
     return userName;
 }
 
@@ -110,18 +111,20 @@ const selectingQuestions = (array) => {
     return playersArray;
 }
 
-// // TIMER PARA EL JUEGO 
-// const timeToAnswer = () => {};
-// // EJEMPLO:
-// setTimeout(function(){
-//     console.log("Hola Mundo");
-// }, 2000);
-// console.log("setTimeout() Ejemplo...");
+const timeToAnswer = () => {
+    countTime = setTimeout(() => {
+        hasTimeToPlay = false;
+    }, 20000);
+}
 
 const abcQuestions = (array, userName) => {
     for(let i = 0; i < array.length; i++){
         if(array[i].status === 0 || array[i].status === 1){
             let userAnswer = prompt(`${array[i].question}`);
+            if (!hasTimeToPlay){
+                noMoreTime(userName);
+                return;
+            }
             if(userAnswer === null || userAnswer.toLowerCase().trim() === "end"){
                 wantToQuit = true;
                 quitGame(userName);
@@ -154,10 +157,6 @@ const verifyAnswer = (array, i, userAnswer) => {
     }
 }
 
-const isPasapalabra = (array) => {
-    return array.some(item => item.status === 1);
-}
-
 const playerScores = (userName, correctAnswer) => {
     let playerNames = [
         {name: "Donna", score: `${Math.floor(Math.random() * (26 - 1) + 1)}`},
@@ -175,8 +174,17 @@ const playerScores = (userName, correctAnswer) => {
     alert(`Este es el ranking de nuestros usuarios:\r\n${scoringPosition}\r\nNos vemos la próxima!👋🏻`);
 }
 
+const isPasapalabra = (array) => {
+    return array.some(item => item.status === 1);
+}
+
 const quitGame = (userName) => {
-    alert(`Gracias por jugar a Pasapalabra Game ${userName}!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente.\nNos vemos la próxima!👋🏻`);
+    alert(`Gracias por jugar a Pasapalabra Game ${userName}!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente.\r\nNos vemos la próxima!👋🏻`);
+    return;
+}
+
+const noMoreTime = (userName) => {
+    alert(`${userName} te has quedado sin tiempo⏳!`);
     return;
 }
 
@@ -184,9 +192,13 @@ const quitGame = (userName) => {
 const alphabeticalGame = () => {
     const userName = greetingAndGetName();
     const playersArray = selectingQuestions(questions);
+    timeToAnswer();
     do {
         abcQuestions(playersArray, userName);
-    } while (isPasapalabra(playersArray) && !wantToQuit);
+    } while (isPasapalabra(playersArray) && !wantToQuit && hasTimeToPlay);
+    if(hasTimeToPlay){
+        clearTimeout(countTime);
+    }
     if (!wantToQuit){
         alert(`${userName}, has terminado el juego!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente y te equivocaste en ${wrongAnswer}`);
         playerScores(userName, correctAnswer);
