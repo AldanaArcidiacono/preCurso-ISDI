@@ -30,7 +30,6 @@ const questions = [
   ];
 
 // Auxiliary functions
-let startingPlayerScore;
 let wantToPlay = true;
 let wrongAnswer = 0;
 let correctAnswer = 0;
@@ -73,22 +72,19 @@ const verifyAnswer = (array, i, userAnswer) => {
     switch (userAnswer) {
         case "pasapalabra":
             array[i].status = 1;
-            console.log("Pasapalabra", userAnswer);
-            //alert("Haz pasado palabra");
+            alert("Haz pasado palabra");
         break;
         case "":
             array[i].status = 1;
-            console.log("Pasapalabra", "de string vacio", userAnswer);
+            alert("Haz pasado palabra");
         break;
         case array[i].answer:
             array[i].status = 2;
             correctAnswer++;
-            console.log("Respuesta correcta", userAnswer, correctAnswer);
         break;
         default:
             array[i].status = 3;
             wrongAnswer++;
-            console.log("Respuesta INCOrrecta", userAnswer, wrongAnswer);
     }
 }
 
