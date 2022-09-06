@@ -41,7 +41,7 @@ const greetingAndGetName = () => {
         userName = prompt("Por favor, escribe tu nombre para comenzar el juego.");
     }
     // Explicar aquí cómo funcionan los puntos, una vez lo tenga definido. Indicar cuanto tiempo tiene para respodner el rosco
-    alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona.\nCada ronda, se te hará una pregunta con cada una de las letras del abecedario.\nSi no sabes alguna de ellas, puedes escribir "pasapalabra" o darle a "aceptar" y responderla en la siguiente ronda.`);
+    alert(`Hola ${userName}! A continuación se iniciará el juego, pero antes te contaremos cómo funciona.\nCada ronda, se te hará una pregunta con cada una de las letras del abecedario.\nSi no sabes alguna de ellas, puedes escribir "pasapalabra" o darle a "aceptar" y responderla en la siguiente ronda.\n Tendrás  segundos para completar el juego.\r\n Suerte!🎡🍀`);
     return userName;
 }
 
@@ -113,18 +113,9 @@ const playerScores = (userName, correctAnswer) => {
     alert(`Este es el ranking de nuestros usuarios:\r\n${scoringPosition}`);
 }
 
-// const playAgain = (userName) => {
-//     const newGame = confirm("Haz click en 'aceptar' si deseas jugar de nuevo🎲🎱. De lo contrario, haz click en 'cancelar'");
-//     if (newGame){
-//         alphabeticalGame();
-//     } else {
-//         quitGame(userName);
-//         return;
-//     }
-// }
-
 const quitGame = (userName) => {
-    alert(`Gracias por jugar a Pasapalabra Game! ${userName}!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente.\nNos vemos la próxima!👋🏻`);
+    alert(`Gracias por jugar a Pasapalabra Game ${userName}!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente.\nNos vemos la próxima!👋🏻`);
+    return;
 }
 
 // Main function:
@@ -133,7 +124,9 @@ const alphabeticalGame = () => {
     do {
         abcQuestions(questions, userName);
     } while (isPasapalabra(questions) && wantToPlay);
-    alert(`${userName}, has terminado el juego!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente y te equivocaste en ${wrongAnswer}`);
-    playerScores(userName, correctAnswer);
+    if (wantToPlay){
+        alert(`${userName}, has terminado el juego!🤗🎡📚\nHas respondido ${correctAnswer} palabras correctamente y te equivocaste en ${wrongAnswer}`);
+        playerScores(userName, correctAnswer);
+    }
 };
 alphabeticalGame();
