@@ -17,7 +17,7 @@ const myObject = {
 }
 console.log(myObject);
 
-//Ejercicio 5:
+//Ejercicio 5 :
 for (let i = 0; i < myData.length; i++){
     console.log("Estos son mis datos: ",myData[i]);
 }
