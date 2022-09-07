@@ -147,7 +147,7 @@ const verifyAnswer = (array, i, userAnswer) => {
             array[i].status = 1;
             alert("Haz pasado palabra🔜");
         break;
-        case array[i].answer:
+        case array[i].answer: 
             array[i].status = 2;
             correctAnswer++;
             alert("Haz contestado correctamente!✅");
