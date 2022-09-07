@@ -155,7 +155,7 @@ const verifyAnswer = (array, i, userAnswer) => {
         default:
             array[i].status = 3;
             wrongAnswer++;
-            alert("Respuesta incorrecta❌");
+            alert(`Respuesta incorrecta❌. La respuesta correcta es: ${array[i].answer}`);
     }
 }
 
