@@ -1,0 +1,109 @@
+body{
+    background-color: #646464;
+}
+
+p{
+    position: absolute;
+    width: 6rem;
+    height: 1rem;
+    left: 2rem;
+    top: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1rem;
+    line-height: 1rem;
+    color: #9D9797;
+}
+
+.box{
+    box-sizing: border-box;
+    position: absolute;
+    width: 9rem;
+    height: 9rem;
+    background: #D9D9D9;
+    border: 0.3rem solid #FFFFFF;
+    cursor: pointer;
+}
+
+.box:hover{
+    background-color: #ede5e584;
+    overflow: hidden;
+    transition: all 500ms ease;
+}
+
+#box1{
+    left: 1rem;
+    top: 1rem;
+}
+
+#box2{
+    left: 11.5rem;
+    top: 1rem;
+}
+
+#box3{
+    left: 22rem;
+    top: 1rem;
+}
+
+#box4{
+    left: 32.5rem;
+    top: 1rem;
+}
+
+#box5{
+    left: 43rem;
+    top: 1rem;
+}
+
+#box6{
+    left: 1rem;
+    top: 11.5rem;
+}
+
+#box7{
+    left: 11.5rem;
+    top: 11.5rem;
+}
+
+#box8{
+    left: 22rem;
+    top: 11.5rem;
+}
+
+#box9{
+    left: 32.5rem;
+    top: 11.5rem;
+}
+
+#box10{
+    left: 43rem;
+    top: 11.5rem;
+}
+
+#box11{
+    left: 1rem;
+    top: 22rem;
+}
+
+#box12{
+    left: 11.5rem;
+    top: 22rem;
+}
+
+#box13{
+    left: 22rem;
+    top: 22rem;
+}
+
+#box14{
+    left: 32.5rem;
+    top: 22rem;
+}
+
+#box15{
+    left: 43rem;
+    top: 22rem;
+}
+
