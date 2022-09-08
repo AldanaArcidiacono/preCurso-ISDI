@@ -27,9 +27,7 @@ p{
 }
 
 .box:hover{
-    background-color: #ede5e584;
-    overflow: hidden;
-    transition: all 500ms ease;
+    box-shadow: 0rem 0rem 1rem 0rem white
 }
 
 #box1{
