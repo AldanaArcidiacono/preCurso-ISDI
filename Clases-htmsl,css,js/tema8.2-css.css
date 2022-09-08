@@ -1,0 +1,112 @@
+img {
+    position: absolute;
+    width: 12.5rem;
+    height: 12.5rem;
+    left: 2rem;
+}
+
+.pic1 {
+    top: 2rem;
+}
+
+.pic2 {
+    top: 17rem;
+}
+
+.pic3 {
+    top: 32rem;
+}
+
+.pic4 {
+    top: 47rem;
+    padding-bottom: 2rem;
+}
+
+h2 {
+    position: absolute;
+    left: 16rem;
+    height: 3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 2.5rem;
+    line-height: 3rem;
+    color: #000000;
+}
+
+.title1 {
+    width: 19rem;
+    top: 1rem;
+}
+
+.title2 {
+    width: 19rem;
+    top: 16rem;
+}
+
+.title3 {
+    width: 26rem;
+    top: 31rem;
+
+}
+
+.title4 {
+    width: 13rem;
+    top: 46rem;
+}
+
+p{
+    position: absolute;
+    width: 48rem;
+    height: 6.25rem;
+    left: 16rem;
+    font-family: sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 1.7rem;
+    line-height: 2rem;
+    color: #000000;
+}
+
+.p1 {
+    top: 6rem;
+}
+
+.p2 {
+    top: 21rem;
+}
+
+.p3 {
+    top: 36rem;
+}
+
+.p4 {
+    top: 51rem;
+}
+
+div {
+    width: 67rem;
+    height: 15rem;
+    margin-left: 0.25rem;
+    cursor: pointer;
+}
+
+div:hover{
+    background-color: #ebebeb;
+}
+
+.group1{
+    margin-top: 0.7rem;
+}
+
+.group2{
+    margin-top: 0rem;
+}
+
+.group3{
+    margin-top: 0rem;
+}
+
+.group4{
+    margin-top: 0rem;
+}
