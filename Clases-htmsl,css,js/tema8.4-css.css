@@ -1,0 +1,52 @@
+body{
+    background-color: #67BE49;
+}
+
+.white-box {
+    background-color: #ffffff;
+    position: absolute;
+    width: 24rem;
+    height: 18rem;
+    left: 21rem;
+    top: 13rem;
+    box-shadow: 0rem 0.5rem 1rem 0rem #495845;
+}
+
+input{
+    margin: 1.5rem 3rem 0rem;
+    width: 15rem;
+    height: 3rem;
+    padding: 0rem 1rem;
+    color: #929292;
+    background-color: #F2F2F2;
+    border: none;
+    display: table;
+    cursor: text;
+    font-family: Arial, Helvetica, sans-serif;
+    font-style: normal;
+}
+
+button{
+    margin: 1rem 4rem 1rem 3rem;
+    width: 17rem;
+    height: 3rem;
+    padding: 0rem 1rem;
+    color: #ffffff;
+    background-color: #67BE4B;
+    border: none;
+    cursor: pointer;
+}
+
+label{
+    margin-left: 6rem;
+    color: #929292;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+}
+
+a{
+    margin-left: 0rem;
+    color: #67BE4B;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small; 
+}
