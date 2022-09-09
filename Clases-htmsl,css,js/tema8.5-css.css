@@ -1,0 +1,220 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400&display=swap');
+
+*{
+    font-family: roboto;
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0rem;
+    margin-top: 0rem;
+}
+
+li {
+    padding: 1rem;
+}
+
+a {
+    text-decoration: none;
+    position: absolute;
+    color: #6F6F6F;
+    top: 0.5rem;
+    height: 1rem;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 1.25rem;
+    line-height: 2rem;
+    cursor: pointer;
+}
+
+.logo{
+    width: 9.25rem;
+    left: 1.5rem;
+}
+
+.home{
+    width: 4.75rem;
+    left: 12rem;
+}
+
+.pricing{
+    width: 5rem;
+    left: 18rem;
+    color: #000000;
+}
+
+.contact{
+    width: 6rem;
+    left: 24rem;
+}
+
+.img {
+    position: absolute;
+    width: 96rem;
+    height: 25rem;
+    left: 0rem;
+    top: 3rem;
+    background: url(pics/AtumTrees.jpg);
+}
+
+.img-p{
+    position: absolute;
+    width: 28rem;
+    height: 114px;
+    left: 34rem;
+    top: 8rem;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 3rem;
+    text-align: center;
+    color: #FFFFFF;
+    text-shadow: 0px 4px 4px rgb(0 0 0 / 25%);
+}
+
+.plans {
+    position: absolute;
+    width: 45rem;
+    height: 30rem;
+    display: flex;
+    top: 32rem;
+    left: 20rem;
+}
+
+.price-rec{
+    position: inherit;
+    width: 19rem;
+    height: 14rem;
+}
+
+.first-text{
+    position: inherit;
+    width: 14rem;
+    height: 2rem;
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 2rem;
+    color: #FFFFFF;
+}
+
+.second-text{
+    position: inherit;
+    top: 7rem;
+    width: 8rem;
+    height: 1rem;
+    font-size: 6rem;
+    line-height: 2rem;
+    margin: 3rem 0rem 3.7rem 3.5rem;
+    color: #FFFFFF;
+}
+
+.third-text{
+    position: inherit;
+    width: 8rem;
+    height: 2rem;
+    left: 21rem;
+    top: 39rem;
+    font-size: 1.4rem;
+    line-height: 2rem;
+    margin: 0rem 0rem 0rem 5rem;
+    color: rgba(255, 255, 255, 0.56);
+}
+
+.personal-plan{
+    left: 15rem;
+    top: 30rem;
+    padding: 0rem 3rem 0rem 0rem;
+}
+
+#green-rec{
+    background: #519251;
+}
+
+#personal{
+    margin: 0rem 0rem 0rem 4rem;
+    padding: 1rem 0rem 0rem 0rem;
+}
+
+#price{
+    margin: 3rem 0rem 4rem 5rem;
+}
+
+.business-plan{
+    left: 36rem;
+    top: 30rem; 
+    padding: 0rem 3rem 0rem 0rem;
+}
+
+#blue-rec{
+    background: #2C4985;
+}
+
+#business{
+    margin: 0rem 0rem 0rem 1rem;
+    padding: 1rem 0rem 0rem 0rem;
+    width: 17rem;
+}
+
+.enterprise-plan{
+    left: 55rem;
+    top: 30rem;
+    padding: 0rem 3rem 0rem 0rem;
+}
+
+#black-rec{
+    background: #111111;
+}
+
+#enterprise{
+    margin: 0rem 0rem 0rem 3rem;
+    padding: 1rem 0rem 0rem 0rem;
+    width: 17rem;
+}
+
+.info{
+    position: inherit;
+    padding: 1rem 0rem 0rem 0rem;
+    width: 19rem;
+    height: 16rem;
+    background: #E9E8E8;
+}
+
+hr{
+    position: inherit;
+    width: 18.8rem;
+    border: 1px solid #B9B9B9;
+}
+
+.point{
+    position: inherit;
+    width: 18rem;
+    height: 1.6rem;
+    font-size: 1.4rem;
+    line-height: 2.3rem;
+    margin: 0rem 0rem 0rem 0.5rem;
+    text-align: center;
+    color: #515151;
+}
+
+.button{
+    box-sizing: border-box;
+    position: inherit;
+    width: 19rem;
+    height: 5rem;
+    background: #FFFFFF;
+    border: 1px solid #B9B9B9;
+    padding: 1rem 4rem 1rem 4rem;
+}
+
+button{
+    box-sizing: border-box;
+    position: absolute;
+    width: 11rem;
+    height: 3rem;
+    background: #FFFFFF;
+    border: 1px solid #B9B9B9;
+    border-radius: 2rem;
+    font-size: 26px;
+    line-height: 38px;
+    color: #4E4E4E;
+}
