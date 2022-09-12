@@ -1,6 +1,21 @@
-const calculator = document.querySelector(".calculator");
-const keys = calculator.querySelector("calculator__keys");
 
+
+const calculator = document.querySelector(".calculator")
+const keys = calculator.querySelector(".calculator__keys")
+
+keys.addEventListener("click", element => {
+  if (element.target.matches("button")) {
+    // Do something
+  }
+ })
+
+
+const key = element.target
+const action = key.dataset.action
+
+if (!action) {
+  console.log('number key!')
+}
 
 // // Auxiliary functions:
 // const getArrayNumbers = () => {
