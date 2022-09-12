@@ -1,0 +1,151 @@
+.calculator__display {
+    position: fixed;
+    width: 448px;
+    height: 127px;
+    left: 128px;
+    top: 81px;
+    background: #4C4C4C;
+    border-radius: 12px 12px 0px 0px;
+}
+
+.diplay--number {
+    position: fixed;
+    width: 63px;
+    height: 57px;
+    left: 510px;
+    top: 45px;
+    font-weight: 400;
+    font-size: 94px;
+    line-height: 38px;
+    color: #FFFFFF;
+}
+
+.calculator__keys {
+    display: grid;
+    position: absolute;
+    width: 112px;
+    height: 89px;
+    left: 128px;
+    top: 207px;
+    background: #D6D6D6;
+}
+
+button{
+    position: fixed;
+    width: 112px;
+    height: 89px;
+    font-weight: 400;
+    font-size: 57px;
+    line-height: 38px;
+    color: #000000;
+    border: 0.5px solid #787878;
+    cursor: pointer;
+} 
+
+.clear--all {
+    left: 128px;
+    top: 208px;
+}
+
+.plus-minus--sign{
+    left: 240px;
+    top: 208px;
+}
+
+.percentage{
+    left: 352px;
+    top: 208px;
+}
+
+.key--div{
+    left: 464px;
+    top: 208px;
+    background: #F6932E;
+    color: #FFFFFF;
+}
+
+.key--7{
+    left: 128px;
+    top: 297px;
+}
+
+.key--8{
+    left: 240px;
+    top: 297px;
+}
+
+.key--9{
+    left: 352px;
+    top: 297px;    
+}
+
+.key--mult{
+    left: 464px;
+    top: 297px;
+    background: #F6932E; 
+    color: #FFFFFF;
+}
+
+.key--4{
+    left: 128px;
+    top: 386px;
+}
+
+.key--5{
+    left: 240px;
+    top: 386px;
+}
+
+.key--6{
+    left: 352px;
+    top: 386px;
+}
+
+.key--sub{
+    left: 464px;
+    top: 386px;
+    background: #F6932E;
+    color: #FFFFFF;
+}
+
+.key--1{
+    left: 128px;
+    top: 475px;
+}
+
+.key--2{
+    left: 240px;
+    top: 475px;
+}
+
+.key--3{
+    left: 352px;
+    top: 475px;
+}
+
+.key--add{
+    left: 464px;
+    top: 475px;
+    background: #F6932E;
+    color: #FFFFFF;
+}
+
+.key--0{
+    width: 224px;
+    left: 128px;
+    top: 564px;
+    border-radius: 0px 0px 0px 12px;
+}
+
+.key--coma{
+    left: 352px;
+    top: 564px;
+}
+
+.key--equal{
+    left: 464px;
+    top: 564px;
+    background: #F6932E;
+    color: #FFFFFF;
+    border-radius: 0px 0px 12px 0px;
+}
