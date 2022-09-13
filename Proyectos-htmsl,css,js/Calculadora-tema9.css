@@ -9,10 +9,10 @@
     box-shadow: 0rem 1rem 3rem 0rem grey;
 }
 
-.diplay--number {
+#display--number {
     position: fixed;
     width: 4rem;
-    height: 3rem;
+    height: 6rem;
     left: 31rem;
     top: 3rem;
     font-weight: 400;
@@ -20,7 +20,128 @@
     line-height: 2rem;
     color: #FFFFFF;
 }
-/*
+
+button{
+    position: fixed;
+    width: 7rem;
+    height: 6rem;
+    font-weight: 400;
+    font-size: 3rem;
+    line-height: 2rem;
+    color: #000000;
+    border: 0.5px solid #787878;
+    cursor: pointer;
+} 
+
+.clear--all {
+    left: 8rem;
+    top: 13rem;
+}
+
+#plus-minus--sign{
+    left: 15rem;
+    top: 13rem;
+}
+
+#key--percentage{
+    left: 22rem;
+    top: 13rem;
+}
+
+#key--div{
+    left: 29rem;
+    top: 13rem;
+    background: #F6932E;
+    color: #FFFFFF;
+}
+
+.key--7{
+    left: 8rem;
+    top: 18.5rem;
+}
+
+.key--8{
+    left: 240px;
+    top: 18.5rem;
+}
+
+.key--9{
+    left: 352px;
+    top: 18.5rem;    
+}
+
+#key--mult{
+    left: 464px;
+    top: 18.5rem;
+    background: #F6932E; 
+    color: #FFFFFF;
+}
+
+.key--4{
+    left: 8rem;
+    top: 24rem;
+}
+
+.key--5{
+    left: 240px;
+    top: 24rem;
+}
+
+.key--6{
+    left: 352px;
+    top: 24rem;
+}
+
+#key--sub{
+    left: 464px;
+    top: 24rem;
+    background: #F6932E;
+    color: #FFFFFF;
+}
+
+.key--1{
+    left: 8rem;
+    top: 475px;
+}
+
+.key--2{
+    left: 240px;
+    top: 475px;
+}
+
+.key--3{
+    left: 352px;
+    top: 475px;
+}
+
+#key--add{
+    left: 464px;
+    top: 475px;
+    background: #F6932E;
+    color: #FFFFFF;
+}
+
+.key--0{
+    width: 224px;
+    left: 8rem;
+    top: 564px;
+    border-radius: 0px 0px 0px 12px;
+}
+
+#key--coma{
+    left: 352px;
+    top: 564px;
+}
+
+.key--equal{
+    left: 464px;
+    top: 564px;
+    background: #F6932E;
+    color: #FFFFFF;
+    border-radius: 0px 0px 12px 0px;
+}
+
+/* OTHER OPTION WITH DISPLAY GRID
 .calculator {  
     width: 70vw;
     display: grid;
@@ -143,123 +264,3 @@
     grid-area: numNine;
 }
 */
-
-button{
-    position: fixed;
-    width: 7rem;
-    height: 6rem;
-    font-weight: 400;
-    font-size: 3rem;
-    line-height: 2rem;
-    color: #000000;
-    border: 0.5px solid #787878;
-    cursor: pointer;
-} 
-
-.clear--all {
-    left: 8rem;
-    top: 13rem;
-}
-
-.plus-minus--sign{
-    left: 15rem;
-    top: 13rem;
-}
-
-.percentage{
-    left: 22rem;
-    top: 13rem;
-}
-
-.key--div{
-    left: 29rem;
-    top: 13rem;
-    background: #F6932E;
-    color: #FFFFFF;
-}
-
-.key--7{
-    left: 8rem;
-    top: 18.5rem;
-}
-
-.key--8{
-    left: 240px;
-    top: 18.5rem;
-}
-
-.key--9{
-    left: 352px;
-    top: 18.5rem;    
-}
-
-.key--mult{
-    left: 464px;
-    top: 18.5rem;
-    background: #F6932E; 
-    color: #FFFFFF;
-}
-
-.key--4{
-    left: 8rem;
-    top: 24rem;
-}
-
-.key--5{
-    left: 240px;
-    top: 24rem;
-}
-
-.key--6{
-    left: 352px;
-    top: 24rem;
-}
-
-.key--sub{
-    left: 464px;
-    top: 24rem;
-    background: #F6932E;
-    color: #FFFFFF;
-}
-
-.key--1{
-    left: 8rem;
-    top: 475px;
-}
-
-.key--2{
-    left: 240px;
-    top: 475px;
-}
-
-.key--3{
-    left: 352px;
-    top: 475px;
-}
-
-.key--add{
-    left: 464px;
-    top: 475px;
-    background: #F6932E;
-    color: #FFFFFF;
-}
-
-.key--0{
-    width: 224px;
-    left: 8rem;
-    top: 564px;
-    border-radius: 0px 0px 0px 12px;
-}
-
-.key--coma{
-    left: 352px;
-    top: 564px;
-}
-
-.key--equal{
-    left: 464px;
-    top: 564px;
-    background: #F6932E;
-    color: #FFFFFF;
-    border-radius: 0px 0px 12px 0px;
-}
