@@ -9,35 +9,35 @@
 </head>
 <body>
     <div class="calculator">
-        <div class="calculator__display"> 
-           <p class="diplay--number">0</p>
+        <div class="calculator__display">
+           <p id="display--number">0</p> 
         </div>
 
         <div class="calculator__keys">
 
-            <button class="clear--all">AC</button>
-            <button class="plus-minus--sign">+/-</button>
-            <button class="percentage">%</button>
-            <button class="key--div">÷</button>
+            <button class="clear--all" data-action="clear">AC</button>
+            <button class="key--operator" data-action="plus-minus" id="plus-minus--sign">+/-</button>
+            <button class="key--operator" data-action="percentage" id="key--percentage">%</button>
+            <button class="key--operator" data-action="div" id="key--div">÷</button>
 
             <button class="key--7">7</button>
             <button class="key--8">8</button>
             <button class="key--9">9</button>
-            <button class="key--mult">x</button>
+            <button class="key--operator" data-action="mult" id="key--mult">x</button>
 
             <button class="key--4">4</button>
             <button class="key--5">5</button>
             <button class="key--6">6</button>
-            <button class="key--sub">-</button>
+            <button class="key--operator" data-action="sub" id="key--sub">-</button>
             
             <button class="key--1">1</button>
             <button class="key--2">2</button>
             <button class="key--3">3</button>
-            <button class="key--add">+</button>
+            <button class="key--operator" data-action="add" id="key--add">+</button>
 
             <button class="key--0">0</button>
-            <button class="key--coma">,</button>
-            <button class="key--equal">=</button>
+            <button data-action="decimal" id="key--coma">,</button>
+            <button class="key--equal" data-action="calculate">=</button>
 
         </div>
     </div>

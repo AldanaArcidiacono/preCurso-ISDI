@@ -1,21 +1,37 @@
+const calculator = document.querySelector(".calculator");
+const keys = calculator.querySelector(".calculator__keys");
+const display = document.querySelector("#display--number");
 
+keys.addEventListener("click", event => {
+  if (event.target.matches("button")) {
+    const key = event.target;
+    const action = key.dataset.action;
+    const keyContent = key.textContent;
+    const displayedNum = display.textContent;
 
-const calculator = document.querySelector(".calculator")
-const keys = calculator.querySelector(".calculator__keys")
+    if (!action) {
+      if (displayedNum === "0") {
+        display.textContent = keyContent;
+      } else {
+        display.textContent = displayedNum + keyContent;
+      }
+    }
+    
+    if(action === "plus-minus" || action === "percentage" || action === "add" || action === "sub" || action === "mult" || action === "div"){
+      console.log("operator key!");
+      key.classList.add('is-depressed');
+    } else if (action === "decimal"){
+      console.log("decimal key!");
+    } else if (action === "clear"){
+      console.log("clear key!");
+    } else if (action === "calculate"){
+      console.log("equal key!");
+    } else {
+      console.log("number key!");
+    }
+ }
+});
 
-keys.addEventListener("click", element => {
-  if (element.target.matches("button")) {
-    // Do something
-  }
- })
-
-
-const key = element.target
-const action = key.dataset.action
-
-if (!action) {
-  console.log('number key!')
-}
 
 // // Auxiliary functions:
 // const getArrayNumbers = () => {
