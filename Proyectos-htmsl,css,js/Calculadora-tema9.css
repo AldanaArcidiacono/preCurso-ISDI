@@ -11,10 +11,13 @@
 
 #display--number {
     position: fixed;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
     width: 4rem;
     height: 6rem;
     left: 31rem;
-    top: 3rem;
+    top: 2.5rem;
     font-weight: 400;
     font-size: 6rem;
     line-height: 2rem;
