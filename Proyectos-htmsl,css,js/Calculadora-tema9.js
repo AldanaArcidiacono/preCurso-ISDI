@@ -1,85 +1,107 @@
-const calculator = document.querySelector(".calculator");
-const calculatorKeys = calculator.querySelector(".calculator__keys");
-const showOnDisplay = document.querySelector("#display--number");
-
 const calculate = (num1, operator, num2) => {
-  let result = "";
-  
-  if (operator === "add") {
-    result = parseFloat(num1) + parseFloat(num2);
-  } else if (operator === "sub") {
-    result = parseFloat(num1) - parseFloat(num2);
-  } else if (operator === "mult") {
-    result = parseFloat(num1) * parseFloat(num2);
-  } else if (operator === "div") {
-    result = parseFloat(num1) / parseFloat(num2);
-  }
-  return result
+  const firstValue = parseFloat(num1);
+  const secondValue = parseFloat(num2);
+  if (operator === "add") return firstValue + secondValue;
+  if (operator === "sub") return firstValue - secondValue;
+  if (operator === "mult") return firstValue * secondValue;
+  if (operator === "div") return firstValue / secondValue;
+  if (operator === "percentage") return firstValue % secondValue;
+  //if (operator === "plus-minus") return firstValue ???? secondValue;
 }
 
-calculatorKeys.addEventListener("click", event => {
-  if(event.target.matches("button")){
-    const selectedKey = event.target;
-    const userAction = selectedKey.dataset.action;
-    const keyContent = selectedKey.textContent;
-    const displayedNum = showOnDisplay.textContent;
-    const previousKeyType = calculator.dataset.previousKeyType;
+const getKeyType = key => {
+  const { action } = key.dataset; //Desestructuracion {userAction} https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+  if (!action) return "number";
+  if (
+    action === "plus-minus" || 
+    action === "percentage" || 
+    action === "add" ||
+    action === "sub" || 
+    action === "mult" || 
+    action === "div"
+   ) return "operator";
+  return action;
+}
 
-    let firstNumber = calculator.dataset.firstNumber;
-    const operator = calculator.dataset.operator;
-    let secondNumber = displayedNum;
+const createResultString = (key, displayedNum, state) => {
+  const keyContent = key.textContent;
+  const keyType = getKeyType(key);
+  const { firstNumber, modValue, operator, previousKeyType } = state;
 
-    if (!userAction){
-      if(displayedNum === "0" || previousKeyType === "operator" || previousKeyType === "calculate"){
-        showOnDisplay.textContent = keyContent;
-      } else {
-        showOnDisplay.textContent = displayedNum + keyContent;
-      }
-      calculator.dataset.previousKeyType = "number";
-    }
-
-    if (userAction === "decimal"){
-      if (!displayedNum.includes(",")) {
-        showOnDisplay.textContent = displayedNum + ".";
-      } else if (previousKeyType === "operator" || previousKeyType === "calculate") {
-        showOnDisplay.textContent = "0.";
-      }
-      calculator.dataset.previousKeyType = "decimal";
-    } 
-
-    if(userAction === "plus-minus" || userAction === "percentage" || userAction === "add" || userAction === "sub" || userAction === "mult" || userAction === "div"){    
-      if (firstNumber && operator && previousKeyType !== "operator" && previousKeyType !== "calculate") {
-        const calculateNewNum = calculate(firstNumber, operator, secondNumber);
-        showOnDisplay.textContent = calculateNewNum;
-        calculator.dataset.firstNumber = calculateNewNum;
-      } else {
-        calculator.dataset.firstNumber = displayedNum;
-      }
-      calculator.dataset.previousKeyType = "operator";
-      calculator.dataset.operator = userAction;
-    }
-
-    if (userAction === "clear") {
-        calculator.dataset.firstNumber = "";
-        calculator.dataset.modValue = "";
-        calculator.dataset.operator = "";
-        calculator.dataset.previousKeyType = "";
-
-      showOnDisplay.textContent = 0;
-      calculator.dataset.previousKeyType = "clear";
-    }
-
-    if (userAction === "calculate") {
-      if (firstNumber) {
-        if(previousKeyType === "calculate") {
-          firstNumber = displayedNum;
-          secondNumber = calculator.dataset.modValue;
-        }
-        showOnDisplay.textContent = calculate(firstNumber, operator, secondNumber);
-      }
-      calculator.dataset.modValue = secondNumber;
-      calculator.dataset.previousKeyType = "calculate";
-   } 
-
+  if (keyType === "number"){
+    return displayedNum === "0" || 
+    previousKeyType === "operator" || 
+    previousKeyType === "calculate"
+      ? keyContent
+      : displayedNum + keyContent;
   }
+
+  if (keyType === "decimal"){
+    if (!displayedNum.includes(".")) return displayedNum + ".";
+    if (previousKeyType === "operator" || previousKeyType === "calculate") return "0.";
+    return displayedNum;
+  } 
+
+  if (keyType === "operator"){    
+    return firstNumber && 
+    operator && 
+    previousKeyType !== "operator" &&
+    previousKeyType !== "calculate"
+      ? calculate(firstNumber, operator, displayedNum)
+      : displayedNum;
+  }
+
+  if (keyType === "clear") return 0;
+
+  if (keyType === "calculate") {
+    return firstNumber
+    ? previousKeyType === "calculate"
+      ? calculate(displayedNum, operator, modValue)
+      : calculate(firstNumber, operator, displayedNum)
+    : displayedNum
+  } 
+}
+
+const updateCalculatorState = (key, calculator, calculatedValue, displayedNum) => {
+  const keyType = getKeyType(key);
+  const { firstNumber, modValue, operator, previousKeyType } = calculator.dataset;
+  calculator.dataset.previousKeyType = keyType;
+  
+  if (keyType === "operator") {
+    calculator.dataset.operator = key.dataset.action;
+    calculator.dataset.firstNumber = firstNumber &&
+     operator &&
+     previousKeyType !== "operator" && 
+     previousKeyType !== "calculate"
+    ? calculatedValue
+    : displayedNum;
+  }
+
+  if (keyType === "calculate") {    
+    calculator.dataset.modValue = firstNumber && previousKeyType === "calculate"
+    ? modValue
+    : displayedNum;
+  }
+
+  
+  if (keyType === "clear") {
+    calculator.dataset.firstNumber = ""
+    calculator.dataset.modValue = ""
+    calculator.dataset.operator = ""
+    calculator.dataset.previousKeyType = ""
+  }
+}
+
+const calculator = document.querySelector(".calculator");
+const showOnDisplay = document.querySelector("#display--number");
+const calculatorKeys = calculator.querySelector(".calculator__keys");
+
+calculatorKeys.addEventListener("click", event => {
+  if(!event.target.matches("button")) return;
+  const key = event.target;
+  const displayedNum = showOnDisplay.textContent;
+  const resultString = createResultString(key, displayedNum, calculator.dataset);
+
+  showOnDisplay.textContent = resultString;
+  updateCalculatorState(key, calculator, resultString, displayedNum);
 })
