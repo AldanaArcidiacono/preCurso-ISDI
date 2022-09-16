@@ -24,44 +24,62 @@ calculatorKeys.addEventListener("click", event => {
     const keyContent = selectedKey.textContent;
     const displayedNum = showOnDisplay.textContent;
     const previousKeyType = calculator.dataset.previousKeyType;
-    const firstValue = calculator.dataset.firstValue;
+
+    let firstNumber = calculator.dataset.firstNumber;
     const operator = calculator.dataset.operator;
-    const secondValue = displayedNum;
+    let secondNumber = displayedNum;
 
-    if(userAction === "plus-minus" || userAction === "percentage" || userAction === "add" || userAction === "sub" || userAction === "mult" || userAction === "div"){
-      calculator.dataset.previousKeyType = "operator";
-      calculator.dataset.firstValue = displayedNum;
-      calculator.dataset.operator = userAction;
-      if (firstValue && operator && previousKeyType !== "operator") {
-        showOnDisplay.textContent = calculate(firstValue, operator, secondValue)
-      }
-      
-    } else if (userAction === "decimal"){
-      if (!displayedNum.includes(",")) {
-        showOnDisplay.textContent = displayedNum + ",";
-      } else if (previousKeyType === "operator") {
-        showOnDisplay.textContent = "0,";
-      }
-      calculator.dataset.previousKey = "decimal";
-      
-    } else if (userAction === "clear"){
-      calculator.dataset.previousKeyType = "clear";
-
-    } else if (userAction === "calculate"){
-
-      calculator.dataset.previousKeyType = "calculate";
-      showOnDisplay.textContent = calculate(firstValue, operator, secondValue);
-      
-    } else {
-      // if(!userAction)
-      calculator.dataset.previousKey = "number";
-      if(displayedNum === "0" || previousKeyType === "operator"){
+    if (!userAction){
+      if(displayedNum === "0" || previousKeyType === "operator" || previousKeyType === "calculate"){
         showOnDisplay.textContent = keyContent;
       } else {
         showOnDisplay.textContent = displayedNum + keyContent;
       }
+      calculator.dataset.previousKeyType = "number";
     }
 
-    
+    if (userAction === "decimal"){
+      if (!displayedNum.includes(",")) {
+        showOnDisplay.textContent = displayedNum + ".";
+      } else if (previousKeyType === "operator" || previousKeyType === "calculate") {
+        showOnDisplay.textContent = "0.";
+      }
+      calculator.dataset.previousKeyType = "decimal";
+    } 
+
+    if(userAction === "plus-minus" || userAction === "percentage" || userAction === "add" || userAction === "sub" || userAction === "mult" || userAction === "div"){    
+      if (firstNumber && operator && previousKeyType !== "operator" && previousKeyType !== "calculate") {
+        const calculateNewNum = calculate(firstNumber, operator, secondNumber);
+        showOnDisplay.textContent = calculateNewNum;
+        calculator.dataset.firstNumber = calculateNewNum;
+      } else {
+        calculator.dataset.firstNumber = displayedNum;
+      }
+      calculator.dataset.previousKeyType = "operator";
+      calculator.dataset.operator = userAction;
+    }
+
+    if (userAction === "clear") {
+        calculator.dataset.firstNumber = "";
+        calculator.dataset.modValue = "";
+        calculator.dataset.operator = "";
+        calculator.dataset.previousKeyType = "";
+
+      showOnDisplay.textContent = 0;
+      calculator.dataset.previousKeyType = "clear";
+    }
+
+    if (userAction === "calculate") {
+      if (firstNumber) {
+        if(previousKeyType === "calculate") {
+          firstNumber = displayedNum;
+          secondNumber = calculator.dataset.modValue;
+        }
+        showOnDisplay.textContent = calculate(firstNumber, operator, secondNumber);
+      }
+      calculator.dataset.modValue = secondNumber;
+      calculator.dataset.previousKeyType = "calculate";
+   } 
+
   }
 })
