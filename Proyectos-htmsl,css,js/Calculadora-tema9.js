@@ -1,25 +1,23 @@
 const calculate = (num1, operator, num2) => {
-  const firstValue = parseFloat(num1);
-  const secondValue = parseFloat(num2);
+  let firstValue = parseFloat(num1);
+  let secondValue = parseFloat(num2);
   if (operator === "add") return firstValue + secondValue;
   if (operator === "sub") return firstValue - secondValue;
   if (operator === "mult") return firstValue * secondValue;
   if (operator === "div") return firstValue / secondValue;
-  if (operator === "percentage") return firstValue % secondValue;
-  //if (operator === "plus-minus") return firstValue ???? secondValue;
+  if (operator === "percentage") return firstValue * secondValue / 100;
 }
 
 const getKeyType = key => {
-  const { action } = key.dataset; //Desestructuracion {userAction} https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
+  const { action } = key.dataset;
   if (!action) return "number";
   if (
-    action === "plus-minus" || 
     action === "percentage" || 
     action === "add" ||
     action === "sub" || 
     action === "mult" || 
     action === "div"
-   ) return "operator";
+    ) return "operator";
   return action;
 }
 
@@ -34,6 +32,10 @@ const createResultString = (key, displayedNum, state) => {
     previousKeyType === "calculate"
       ? keyContent
       : displayedNum + keyContent;
+  }
+
+  if (keyType === "plus-minus"){
+    return parseFloat(showOnDisplay.textContent) * -1;
   }
 
   if (keyType === "decimal"){
@@ -83,12 +85,11 @@ const updateCalculatorState = (key, calculator, calculatedValue, displayedNum) =
     : displayedNum;
   }
 
-  
   if (keyType === "clear") {
-    calculator.dataset.firstNumber = ""
-    calculator.dataset.modValue = ""
-    calculator.dataset.operator = ""
-    calculator.dataset.previousKeyType = ""
+    calculator.dataset.firstNumber = "";
+    calculator.dataset.modValue = "";
+    calculator.dataset.operator = "";
+    calculator.dataset.previousKeyType = "";
   }
 }
 
